@@ -1,0 +1,27 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "ES2021",
+    "module": "ES6",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir": "wwwroot",
+    "jsx": "react",
+    "allowJs": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./custom.d.ts"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot",
+    "webpack.config.js"
+  ]
+}

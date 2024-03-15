@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "scripts": {
+    "copyStuff": "cd src && copyfiles -a **/*.html ../wwwroot && copyfiles -a **/*.css ../wwwroot && copyfiles -a **/*.png ../wwwroot && copyfiles -a **/*.jpg ../wwwroot && copyfiles -a **/*.svg ../wwwroot",
+    "build": "tsc --build && npm run copyStuff"
+
+  },
+  "devDependencies": {
+    "copyfiles": "2.4.1",
+    "eslint": "^8.57.0",
+    "typescript": "5.3.3"
+  }
+}

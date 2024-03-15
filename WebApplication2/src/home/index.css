@@ -1,0 +1,48 @@
+﻿.burklax {
+background-color:black;
+color:white;
+}
+
+
+#FileView  img {
+width:1em;
+height: 1em;
+}
+
+
+#FileVie {
+display:block;
+}
+
+#FileView .group {
+    display: block;
+    float: left;
+    padding: 0.15em;
+    background-color: #211;
+    margin: 2px;
+    font-size: 0.6em;
+    border-radius: 1em;
+}
+    #FileView .group.dir:hover {
+        background-color: #311;
+    }
+
+
+    #FileView .group div {
+        display: inline-block;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+.PathDisplay {
+    background-color: #111;
+    padding: 0.2em;
+    border: solid 1px silver;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+dotdet-dialog dialog {
+    background-color: black;
+    color: white;
+}

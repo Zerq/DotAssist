@@ -1,0 +1,56 @@
+﻿
+//import * as CMD from "./console.png";
+//import * as Globe from "./globe.png";
+//import * as Library from "./lib.png";
+//import * as WinForm from "./winform.png";
+
+//import * as AddProject from "./plusProj.png";
+//import * as AddFile from "./plusfile.png";
+
+//import * as Folder from "./folder.png";
+//import * as BaseFile from "./basicFile.png";
+//import * as CSharpFile from "./c#.png";
+//import * as HtmlFile from "./htmlfile.png";
+//import * as JavascriptFile from "./jsfile.png";
+//import * as JsonFile from "./jsonfile.png";
+//import * as ProjectFile from"./projFile.png";
+//import * as SolutionFile from "./slnFile.png";
+
+
+const CMD = require("./console.png");
+const Globe = require("./globe.png");
+const Library = require("./lib.png");
+const WinForm = require("./winform.png");
+
+const AddProject = require("./plusProj.png");
+const AddFile = require("./plusfile.png");
+const Folder = require("./folder.png");
+const BaseFile = require("./basicFile.png");
+const CSharpFile = require("./c#.png");
+const HtmlFile = require("./htmlfile.png");
+const JavascriptFile = require("./jsfile.png");
+const JsonFile = require("./jsonfile.png");
+const ProjectFile = require("./projFile.png"
+const SolutionFile = require( "./slnFile.png");
+
+export class Icons {
+    static Assets = new Icons();
+    Console = CMD;
+    Globe = Globe;
+    Library = Library;
+    WinForm = WinForm;
+
+    AddProject = AddProject;
+    AddFile = AddFile;
+
+    Folder = Folder;
+    BaseFile = BaseFile;
+    CSharpFile = CSharpFile;
+    HtmlFile = HtmlFile;
+    JavascriptFile = JavascriptFile;
+    JsonFile = JsonFile;
+    ProjectFile = ProjectFile;
+    SolutionFile = SolutionFile;
+}
+
+ 

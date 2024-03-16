@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/WebApplication2/node_modules
+/.vs/WebApplication2/FileContentIndex/62d03ce5-487a-4275-a02f-628ce55e4cdd.vsidx
+/.vs/WebApplication2/FileContentIndex/c465dfd2-defa-48cd-aec6-de914f500549.vsidx

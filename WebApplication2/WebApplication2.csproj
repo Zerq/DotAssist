@@ -8,33 +8,32 @@
 
   <ItemGroup>
     <None Remove="src\assets\Icons.ts-derp" />
-    <None Remove="src\home\Components\DotNetDialog\DotNetDialog.ts" />
-    <None Remove="src\home\Components\DotNetDialog\DotNetService.ts" />
-    <None Remove="src\home\index - Copy.ts" />
+    <None Remove="src\Components\DotNetDialog\DotNetDialog.ts" />
+    <None Remove="src\Components\DotNetDialog\DotNetService.ts" />
     <None Remove="src\index.ts" />
-    <None Remove="src\types\Custom.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="src\assets\Icons.ts-derp" />
-    <TypeScriptCompile Include="src\home\Components\DotNetDialog\DotNetDialog.ts" />
-    <TypeScriptCompile Include="src\home\Components\DotNetDialog\DotNetService.ts" />
-    <TypeScriptCompile Include="src\home\index - Copy.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\home\entry.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="custom.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\types\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="src\entry.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
 
 </Project>

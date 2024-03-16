@@ -1,9 +1,10 @@
-﻿import { App } from "./AppPipe";
-import { FileView } from "./Components/FileViewer/FileView";
-import { FileSystem } from "./FileSystem";
-import { DomainEvent } from "./DomainEvent";
-import { DialogResults, DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
-import { Stages } from "./Stages";
+﻿import { App } from "../Components/Util/AppPipe.js";
+import { FileView } from "../Components/FileViewer/FileView.js";
+import { FileSystem } from "../Services/FileSystem.js";
+import { DialogResults, DotNetDialog } from "../Components/DotNetDialog/DotNetDialog.js";
+import { DomainEvent } from "./DomainEvent.js";
+import { Stages } from "./Stages.js";
+import { Elm } from "../Components/Util/Elm.js";
 
 export class Home {
     private DirectoryService = new FileSystem();
@@ -13,6 +14,10 @@ export class Home {
     public async Run() {
         const fileview = document.getElementById("FileView");
         const dotnetDialog = <DotNetDialog>document.querySelector("#dotnet");
+
+        Elm.From(document.head).Swallow(() => [
+            new Elm("link").Attr("rel", "stylesheet").Attr("href", `${location.origin}/home/home.css`)
+        ]);
 
         await App.Pipe.Register<string>("AppMenuItemClicked", async e => {
             switch (e) {

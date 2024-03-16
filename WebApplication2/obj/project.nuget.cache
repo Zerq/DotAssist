@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A8OCMCGUu35UhARVYr/D5dk23xdFZ0Xw9iVZKkHOUV3zyXvqjxYbpsgpsU8h0ttwRIHUCFArvBfvx/Geml1GrQ==",
+  "dgSpecHash": "G6HCjLGLx+9lWQ/PeMPBCnsubqZNnmeU8r35rRSMkZr+5WGldmWJQmXBx97O4iIhUBEoAbQUIpaswBzbDD5g8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Zerq\\.nuget\\packages\\microsoft.typescript.msbuild\\5.4.2\\microsoft.typescript.msbuild.5.4.2.nupkg.sha512",
     "C:\\Users\\Zerq\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []

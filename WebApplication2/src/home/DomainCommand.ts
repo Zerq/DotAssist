@@ -1,11 +1,9 @@
-﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, WebpackSelected } from "./DomainEvent";
-import { Guid } from "./Guid";
-
+﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, WebpackSelected } from "./DomainEvent.js";
+import { Guid } from "../Components/Util/Guid.js";
 
 export abstract class DomainCommand {
     public abstract Execute(): Array<DomainEvent>;
 }
-
 
 export class SelectBaseFolder extends DomainCommand {
     public Execute(): Array<DomainEvent> {
@@ -14,7 +12,6 @@ export class SelectBaseFolder extends DomainCommand {
         selected.Created = new Date();
         selected.id = Guid.NewGuid();
         //selected.SequenceNumber  = ??
-
         return [selected];
     }
 

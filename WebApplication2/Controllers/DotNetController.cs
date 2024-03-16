@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace WebApplication2.Controllers {
     [Route("dotnet")]
@@ -23,5 +24,12 @@ namespace WebApplication2.Controllers {
         public string Language { get; set; } = "C#";
     }
 
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum PathType {
+        Drive,
+        Directory,
+        File
+    }
 
 }

@@ -8,12 +8,14 @@
     ".NETCoreApp,Version=v7.0": {
       "WebApplication2/1.0.0": {
         "dependencies": {
+          "Microsoft.TypeScript.MSBuild": "5.4.2",
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "WebApplication2.dll": {}
         }
       },
+      "Microsoft.TypeScript.MSBuild/5.4.2": {},
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -29,6 +31,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.TypeScript.MSBuild/5.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3A+EztIH2M+apzH58/Oqa5LWAzrgGHApXnzKt5Bat4Z3q6JRbfbjj2Y9p/NWjhO+p6R3vacM95bQU6WM/7rKbA==",
+      "path": "microsoft.typescript.msbuild/5.4.2",
+      "hashPath": "microsoft.typescript.msbuild.5.4.2.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

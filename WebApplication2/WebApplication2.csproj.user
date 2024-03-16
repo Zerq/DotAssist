@@ -7,12 +7,12 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Update="src\home\Components\DotNetDialog\DotNetDialog.ts">
+    <TypeScriptCompile Update="src\Components\DotNetDialog\DotNetDialog.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Update="src\home\Components\DotNetDialog\DotNetService.ts">
+    <TypeScriptCompile Update="src\Services\DotNetService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

@@ -64,7 +64,6 @@ C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\appsetting
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\appsettings.json
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\package-lock.json
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\package.json
-C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\src\assets\tsconfig.json
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\tsconfig.json
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\WebApplication2.staticwebassets.runtime.json
 C:\Users\Zerq\source\repos\DotAssist\WebApplication2\bin\Debug\net7.0\WebApplication2.exe

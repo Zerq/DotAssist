@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Assets: () => (/* binding */ Assets),\n/* harmony export */   FileLookUp: () => (/* binding */ FileLookUp)\n/* harmony export */ });\nclass Assets {\n}\nAssets.Console = __webpack_require__(/*! ../assets/console.png */ \"./src/assets/console.png\");\nAssets.Folder = __webpack_require__(/*! ../assets/folder.png */ \"./src/assets/folder.png\");\nAssets.Globe = __webpack_require__(/*! ../assets/globe.png */ \"./src/assets/globe.png\");\nAssets.Lib = __webpack_require__(/*! ../assets/lib.png */ \"./src/assets/lib.png\");\nAssets.WinForm = __webpack_require__(/*! ../assets/winform.png */ \"./src/assets/winform.png\");\nAssets.AddFile = __webpack_require__(/*! ../assets/plusfile.png */ \"./src/assets/plusfile.png\");\nAssets.AddProject = __webpack_require__(/*! ../assets/plusProj.png */ \"./src/assets/plusProj.png\");\nAssets.File = __webpack_require__(/*! ../assets/basicFile.png */ \"./src/assets/basicFile.png\");\nAssets.CSharpFile = __webpack_require__(/*! ../assets/c#.png */ \"./src/assets/c\\u0000#.png\");\nAssets.HtmlFile = __webpack_require__(/*! ../assets/htmlfile.png */ \"./src/assets/htmlfile.png\");\nAssets.JavaScriptFile = __webpack_require__(/*! ../assets/jsfile.png */ \"./src/assets/jsfile.png\");\nAssets.JsonFile = __webpack_require__(/*! ../assets/jsonfile.png */ \"./src/assets/jsonfile.png\");\nAssets.ProjectFile = __webpack_require__(/*! ../assets/projFile.png */ \"./src/assets/projFile.png\");\nAssets.SolutionFile = __webpack_require__(/*! ../assets/slnFile.png */ \"./src/assets/slnFile.png\");\nconst FileLookUp = new Map([\n    [\".cs\", Assets.CSharpFile],\n    [\".html\", Assets.HtmlFile],\n    [\".htm\", Assets.HtmlFile],\n    [\".js\", Assets.JavaScriptFile],\n    [\".json\", Assets.JsonFile],\n    [\".csproj\", Assets.ProjectFile],\n    [\".sln\", Assets.SolutionFile]\n]);\n\n\n//# sourceURL=webpack://asp.net/./src/home/Assets.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Assets: () => (/* binding */ Assets),\n/* harmony export */   FileLookUp: () => (/* binding */ FileLookUp)\n/* harmony export */ });\nclass Assets {\n}\nAssets.Console = __webpack_require__(/*! ../assets/console.png */ \"./src/assets/console.png\");\nAssets.Folder = __webpack_require__(/*! ../assets/folder.png */ \"./src/assets/folder.png\");\nAssets.FolderBack = __webpack_require__(/*! ../assets/folderback.png */ \"./src/assets/folderback.png\");\nAssets.Drive = __webpack_require__(/*! ../assets/drive.png */ \"./src/assets/drive.png\");\nAssets.Globe = __webpack_require__(/*! ../assets/globe.png */ \"./src/assets/globe.png\");\nAssets.Lib = __webpack_require__(/*! ../assets/lib.png */ \"./src/assets/lib.png\");\nAssets.WinForm = __webpack_require__(/*! ../assets/winform.png */ \"./src/assets/winform.png\");\nAssets.AddFile = __webpack_require__(/*! ../assets/plusfile.png */ \"./src/assets/plusfile.png\");\nAssets.AddProject = __webpack_require__(/*! ../assets/plusProj.png */ \"./src/assets/plusProj.png\");\nAssets.File = __webpack_require__(/*! ../assets/basicFile.png */ \"./src/assets/basicFile.png\");\nAssets.CSharpFile = __webpack_require__(/*! ../assets/c#.png */ \"./src/assets/c\\u0000#.png\");\nAssets.HtmlFile = __webpack_require__(/*! ../assets/htmlfile.png */ \"./src/assets/htmlfile.png\");\nAssets.JavaScriptFile = __webpack_require__(/*! ../assets/jsfile.png */ \"./src/assets/jsfile.png\");\nAssets.JsonFile = __webpack_require__(/*! ../assets/jsonfile.png */ \"./src/assets/jsonfile.png\");\nAssets.ProjectFile = __webpack_require__(/*! ../assets/projFile.png */ \"./src/assets/projFile.png\");\nAssets.SolutionFile = __webpack_require__(/*! ../assets/slnFile.png */ \"./src/assets/slnFile.png\");\nconst FileLookUp = new Map([\n    [\".cs\", Assets.CSharpFile],\n    [\".html\", Assets.HtmlFile],\n    [\".htm\", Assets.HtmlFile],\n    [\".js\", Assets.JavaScriptFile],\n    [\".json\", Assets.JsonFile],\n    [\".csproj\", Assets.ProjectFile],\n    [\".sln\", Assets.SolutionFile]\n]);\n\n\n//# sourceURL=webpack://asp.net/./src/home/Assets.ts?");
 
 /***/ }),
 
@@ -96,7 +96,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   RenderDrives: () => (/* binding */ RenderDrives)\n/* harmony export */ });\n/* harmony import */ var _Elm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Elm */ \"./src/home/Elm.ts\");\n/* harmony import */ var _Assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Assets */ \"./src/home/Assets.ts\");\n/* harmony import */ var _formatSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formatSize */ \"./src/home/Components/FileViewer/formatSize.ts\");\n\n\n\nconst RenderDrives = (drives, fileView) => {\n    _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm.From(fileView).EatArray(drives, n => new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"dir\").Class(\"group\", \"dir\").Evt(\"click\", () => {\n        fileView.setAttribute(\"path\", n.FullPath);\n    }).Swallow(() => [\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Swallow(() => [\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"img\").Attr(\"src\", _Assets__WEBPACK_IMPORTED_MODULE_1__.Assets.Folder)\n        ]),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(`${n.Name}`),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(n.Description ?? \"\"),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text((0,_formatSize__WEBPACK_IMPORTED_MODULE_2__.formatSize)(n.Size)),\n    ]));\n};\n\n\n//# sourceURL=webpack://asp.net/./src/home/Components/FileViewer/RenderDrives.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   RenderDrives: () => (/* binding */ RenderDrives)\n/* harmony export */ });\n/* harmony import */ var _Elm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Elm */ \"./src/home/Elm.ts\");\n/* harmony import */ var _Assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Assets */ \"./src/home/Assets.ts\");\n/* harmony import */ var _formatSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formatSize */ \"./src/home/Components/FileViewer/formatSize.ts\");\n\n\n\nconst RenderDrives = (drives, fileView) => {\n    _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm.From(fileView).EatArray(drives, n => new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"dir\").Class(\"group\", \"dir\").Evt(\"click\", () => {\n        fileView.setAttribute(\"path\", n.FullPath);\n    }).Swallow(() => [\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Swallow(() => [\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"img\").Attr(\"src\", _Assets__WEBPACK_IMPORTED_MODULE_1__.Assets.Drive)\n        ]),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(`${n.Name}`),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(n.Description ?? \"\"),\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text((0,_formatSize__WEBPACK_IMPORTED_MODULE_2__.formatSize)(n.Size)),\n    ]));\n};\n\n\n//# sourceURL=webpack://asp.net/./src/home/Components/FileViewer/RenderDrives.ts?");
 
 /***/ }),
 
@@ -116,7 +116,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   RenderParent: () => (/* binding */ RenderParent)\n/* harmony export */ });\n/* harmony import */ var _Elm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Elm */ \"./src/home/Elm.ts\");\n/* harmony import */ var _Assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Assets */ \"./src/home/Assets.ts\");\n\n\nconst RenderParent = (parent, fileView) => {\n    _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm.From(fileView).Swallow(() => [\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Class(\"group\", \"dir\")\n            .Evt(\"click\", () => {\n            fileView.setAttribute(\"path\", parent.FullPath);\n        }).Swallow(() => [\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Swallow(() => [\n                new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"img\").Attr(\"src\", _Assets__WEBPACK_IMPORTED_MODULE_1__.Assets.Folder)\n            ]),\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(\"..\")\n        ])\n    ]);\n};\n\n\n//# sourceURL=webpack://asp.net/./src/home/Components/FileViewer/RenderParent.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   RenderParent: () => (/* binding */ RenderParent)\n/* harmony export */ });\n/* harmony import */ var _Elm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Elm */ \"./src/home/Elm.ts\");\n/* harmony import */ var _Assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Assets */ \"./src/home/Assets.ts\");\n\n\nconst RenderParent = (parent, fileView) => {\n    _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm.From(fileView).Swallow(() => [\n        new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Class(\"group\", \"dir\")\n            .Evt(\"click\", () => {\n            fileView.setAttribute(\"path\", parent.FullPath);\n        }).Swallow(() => [\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Swallow(() => [\n                new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"img\").Attr(\"src\", _Assets__WEBPACK_IMPORTED_MODULE_1__.Assets.FolderBack)\n            ]),\n            new _Elm__WEBPACK_IMPORTED_MODULE_0__.Elm(\"div\").Text(\"..\")\n        ])\n    ]);\n};\n\n\n//# sourceURL=webpack://asp.net/./src/home/Components/FileViewer/RenderParent.ts?");
 
 /***/ }),
 
@@ -220,6 +220,16 @@ eval("module.exports = __webpack_require__.p + \"2e1713a64e6cc1dce293.png\";\n\n
 
 /***/ }),
 
+/***/ "./src/assets/drive.png":
+/*!******************************!*\
+  !*** ./src/assets/drive.png ***!
+  \******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"e568553ab4b9c8b281d7.png\";\n\n//# sourceURL=webpack://asp.net/./src/assets/drive.png?");
+
+/***/ }),
+
 /***/ "./src/assets/folder.png":
 /*!*******************************!*\
   !*** ./src/assets/folder.png ***!
@@ -227,6 +237,16 @@ eval("module.exports = __webpack_require__.p + \"2e1713a64e6cc1dce293.png\";\n\n
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("module.exports = __webpack_require__.p + \"39a55e7c9fa6cf13ca3c.png\";\n\n//# sourceURL=webpack://asp.net/./src/assets/folder.png?");
+
+/***/ }),
+
+/***/ "./src/assets/folderback.png":
+/*!***********************************!*\
+  !*** ./src/assets/folderback.png ***!
+  \***********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"3118431942204207a5b2.png\";\n\n//# sourceURL=webpack://asp.net/./src/assets/folderback.png?");
 
 /***/ }),
 

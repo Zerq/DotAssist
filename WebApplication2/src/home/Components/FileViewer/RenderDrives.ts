@@ -11,7 +11,7 @@ export const RenderDrives = (drives: Array<PathObjectLike>, fileView: FileView) 
             fileView.setAttribute("path", n.FullPath);
         }).Swallow(() => [
             new Elm("div").Swallow(() => [
-                new Elm("img").Attr("src", Assets.Folder)
+                new Elm("img").Attr("src", Assets.Drive)
             ]),
 
             new Elm("div").Text(`${n.Name}`),

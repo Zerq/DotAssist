@@ -1,6 +1,10 @@
 ﻿export class Assets {
     public static Console = require("../assets/console.png");
     public static Folder = require("../assets/folder.png");
+    public static FolderBack = require("../assets/folderback.png");
+    public static Drive = require("../assets/drive.png");
+
+
     public static Globe = require("../assets/globe.png");
     public static Lib = require("../assets/lib.png");
     public static WinForm = require("../assets/winform.png");

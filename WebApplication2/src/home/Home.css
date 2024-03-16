@@ -11,10 +11,12 @@ menu {
     menu li {
         display: inline-block;
         clear: none;
-        padding: 0.5em;
-        margin: 0.5em;
+        padding: 0.25em;
+        margin: 0.25em;
         text-align: center;
         background-color: #052c49;
+        font-size: 0.7em;
+        font-weight: bold;
     }
 
         menu li:hover {

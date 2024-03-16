@@ -11,7 +11,7 @@ export const RenderParent = (parent: PathObjectLike, fileView: FileView) => {
                 fileView.setAttribute("path", parent.FullPath);
             }).Swallow(() => [
                 new Elm("div").Swallow(() => [
-                    new Elm("img").Attr("src", Assets.Folder)
+                    new Elm("img").Attr("src", Assets.FolderBack)
                 ]),
                 new Elm("div").Text("..")
             ])

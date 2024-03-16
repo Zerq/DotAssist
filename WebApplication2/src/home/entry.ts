@@ -1,5 +1,4 @@
-﻿import * as signalR from "@microsoft/signalr";
-import "./index.css";
+﻿//import * as signalR from "@microsoft/signalr";
 
 import { Home } from "./Home";
 import { AppMenu } from "./Components/AppMenu/AppMenu";
@@ -15,7 +14,7 @@ import { DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
 
     customElements.define("file-viewer", FileView);
     customElements.define("app-menu", AppMenu);
-    customElements.define("dotdet-dialog", DotNetDialog)
+    customElements.define("dotnet-dialog", DotNetDialog)
     new Home().Run().then(() => {
         console.log("done");
 

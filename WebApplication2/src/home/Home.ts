@@ -3,19 +3,12 @@ import { FileView } from "./Components/FileViewer/FileView";
 import { FileSystem } from "./FileSystem";
 import { DomainEvent } from "./DomainEvent";
 import { DialogResults, DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
-
-export enum Stages {
-    BaseFolderSelector,
-    DotNetTemplate,
-    ScriptTemplate,
-    StumpSelector
-}
+import { Stages } from "./Stages";
 
 export class Home {
     private DirectoryService = new FileSystem();
     public Events: Map<string, DomainEvent>;
     public stage: Stages = Stages.BaseFolderSelector;
-    
 
     public async Run() {
         const fileview = document.getElementById("FileView");
@@ -47,6 +40,4 @@ export class Home {
         //img.style.height = "100px";
         //document.body.appendChild(img);
     }
-
-
 }

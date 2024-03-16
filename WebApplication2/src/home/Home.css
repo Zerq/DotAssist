@@ -1,7 +1,4 @@
-/*!*********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/home/Home.css ***!
-  \*********************************************************************/
-
+﻿
 menu {
     background-color: #02111c;
     display: inline-block;
@@ -155,4 +152,3 @@ display:block;
     margin-top: 2px;
     margin-bottom: 2px;
 }
-

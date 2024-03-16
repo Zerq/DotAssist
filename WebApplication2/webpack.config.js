@@ -9,7 +9,7 @@ module.exports = {
     mode: "development",
     entry: {
 
-        home: { import: "./src/home/entry.ts"} 
+        home: [ "./src/home/entry.ts", "./src/home/Home.css" ]
     },
     output: {
         

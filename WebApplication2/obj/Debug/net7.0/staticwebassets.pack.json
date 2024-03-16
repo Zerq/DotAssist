@@ -1,76 +1,172 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\00abb3a5df44e53569fd.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\00abb3a5df44e53569fd.png",
       "PackagePath": "staticwebassets\\00abb3a5df44e53569fd.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\05e595ac38d81214b8ba.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\05e595ac38d81214b8ba.png",
       "PackagePath": "staticwebassets\\05e595ac38d81214b8ba.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\2e1713a64e6cc1dce293.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\2e1713a64e6cc1dce293.png",
       "PackagePath": "staticwebassets\\2e1713a64e6cc1dce293.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\31999389b81c72d345cc.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\31999389b81c72d345cc.png",
       "PackagePath": "staticwebassets\\31999389b81c72d345cc.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\39a55e7c9fa6cf13ca3c.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\39a55e7c9fa6cf13ca3c.png",
       "PackagePath": "staticwebassets\\39a55e7c9fa6cf13ca3c.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\3b94744a6e1b0f51f84e.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\3b94744a6e1b0f51f84e.png",
       "PackagePath": "staticwebassets\\3b94744a6e1b0f51f84e.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\40538e5d5043f3af7ac7.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\40538e5d5043f3af7ac7.png",
       "PackagePath": "staticwebassets\\40538e5d5043f3af7ac7.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\4746f9ffdc5ba4e26000.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\4746f9ffdc5ba4e26000.png",
       "PackagePath": "staticwebassets\\4746f9ffdc5ba4e26000.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\8803fbe29fe761b2237d.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\8803fbe29fe761b2237d.png",
       "PackagePath": "staticwebassets\\8803fbe29fe761b2237d.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\8d3097969ec7a55f3248.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\8d3097969ec7a55f3248.png",
       "PackagePath": "staticwebassets\\8d3097969ec7a55f3248.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\af2ce11c13926529fa06.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\af2ce11c13926529fa06.png",
       "PackagePath": "staticwebassets\\af2ce11c13926529fa06.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\b0feef1494be010fc4c6.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\b0feef1494be010fc4c6.png",
       "PackagePath": "staticwebassets\\b0feef1494be010fc4c6.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\b88d04fba731603756b1.css",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\b88d04fba731603756b1.css",
       "PackagePath": "staticwebassets\\b88d04fba731603756b1.css"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\d7bd532dfe7ea2d886ba.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\d7bd532dfe7ea2d886ba.png",
       "PackagePath": "staticwebassets\\d7bd532dfe7ea2d886ba.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\e35a62cf4181186cd52b.png",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\e35a62cf4181186cd52b.png",
       "PackagePath": "staticwebassets\\e35a62cf4181186cd52b.png"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\home.css",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\home.css",
       "PackagePath": "staticwebassets\\home.css"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\home.html",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\home.html",
       "PackagePath": "staticwebassets\\home.html"
     },
     {
-      "Id": "C:\\Users\\Zerq\\source\\repos\\Templator\\WebApplication2\\wwwroot\\home.js",
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\home.js",
       "PackagePath": "staticwebassets\\home.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\AppPipe.js",
+      "PackagePath": "staticwebassets\\src\\home\\AppPipe.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\AppPipe.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\AppPipe.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\AppMenu\\AppMenu.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\AppMenu\\AppMenu.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\AppMenu\\AppMenu.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\AppMenu\\AppMenu.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\DotNetDialog\\DotNetDialog.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\DotNetDialog\\DotNetDialog.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\DotNetDialog\\DotNetDialog.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\DotNetDialog\\DotNetDialog.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\FileView.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\FileView.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\FileView.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\FileView.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderDirectories.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderDirectories.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderDirectories.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderDirectories.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderDrives.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderDrives.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderDrives.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderDrives.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderFiles.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderFiles.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderFiles.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderFiles.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderParent.js",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderParent.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Components\\FileViewer\\RenderParent.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Components\\FileViewer\\RenderParent.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Elm.js",
+      "PackagePath": "staticwebassets\\src\\home\\Elm.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Elm.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Elm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Guid.js",
+      "PackagePath": "staticwebassets\\src\\home\\Guid.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Guid.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Guid.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Home.js",
+      "PackagePath": "staticwebassets\\src\\home\\Home.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\Home.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\Home.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\entry.js",
+      "PackagePath": "staticwebassets\\src\\home\\entry.js"
+    },
+    {
+      "Id": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\wwwroot\\src\\home\\entry.js.map",
+      "PackagePath": "staticwebassets\\src\\home\\entry.js.map"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebApplication2.Microsoft.AspNetCore.StaticWebAssets.props",

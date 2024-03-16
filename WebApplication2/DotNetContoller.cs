@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace WebApplication2
 {
-
     public class DotNetCli
     {
         public List<Template> GetTemplates()

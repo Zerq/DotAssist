@@ -13,7 +13,7 @@ export class Template {
 
 export class DotNetCLIService {
     public async GetTemplates(): Promise<Array<Template>> {
-        const url = "https://localhost:7217/dotnet/templates";
+        const url = location.origin+"/dotnet/templates";
         const response = await fetch(url);
         const text = await response.text();
         return <Array<Template>>JSON.parse(text);

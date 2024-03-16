@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using System.Text.Json;
 using WarProfiteeringInc.hubs;
@@ -37,11 +39,5 @@ app.MapGet("/test", () => "test123");
 app.UseDefaultFiles();
 app.MapDefaultControllerRoute();
 app.UseStaticFiles();
- 
-//app.MapGet("/", () => Results.File("index.html", "text/html"));
-
-
-
-
 
 app.Run();

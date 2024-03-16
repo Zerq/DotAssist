@@ -4,6 +4,13 @@ using System.Security.Principal;
 using System.Text.Json.Serialization;
 
 namespace WebApplication2.Controllers {
+    public class HomeController : Controller {
+    
+        public ActionResult Index() {
+           return new RedirectResult("/home.html");
+        }   
+    }  
+    
     [Route("directory")]
     public class DirectoryController : Controller
     {
@@ -55,17 +62,12 @@ namespace WebApplication2.Controllers {
                         Name = direcotry.Parent.Name,
                         FullPath = direcotry.Parent.FullName
                     };
-
                 }
-
                 return result;
-
             }
             throw new ApplicationException("directory not found");
         }
     }
-
-
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PathType {
@@ -94,7 +96,4 @@ namespace WebApplication2.Controllers {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<PathItem>? Files { get; set; }
     }
-
-
-
 }

@@ -411,3 +411,9 @@ FodyWeavers.xsd
 /.vs/ProjectEvaluation/webapplication2.metadata.v7.bin
 /.vs/ProjectEvaluation/webapplication2.projects.v7.bin
 /.vs/WebApplication2/v17/.suo
+/WebApplication2/bin/Debug/net7.0/WebApplication2.dll
+/WebApplication2/bin/Debug/net7.0/WebApplication2.pdb
+/WebApplication2/obj/Debug/net7.0/ref/WebApplication2.dll
+/WebApplication2/obj/Debug/net7.0/refint/WebApplication2.dll
+/WebApplication2/obj/Debug/net7.0/WebApplication2.dll
+/WebApplication2/obj/Debug/net7.0/WebApplication2.pdb

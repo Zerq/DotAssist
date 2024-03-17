@@ -26,7 +26,7 @@ export class DotNetCLIService {
         dto.Template = template;
         dto.Language = language;
 
-        await fetch("https://localhost:7217/dotnet/new",
+        await fetch( location.origin+"/dotnet/new",
             {
                 method: "POST",
                 body: JSON.stringify(dto),

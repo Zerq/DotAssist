@@ -14,21 +14,25 @@ namespace WebApplication2.Controllers {
     [Route("directory")]
     public class DirectoryController : Controller
     {
-        [HttpGet("open/{dir}")]
+        [HttpGet("open")]
         public PathItem Open(string dir) {
+        if (dir == "root"){
+        dir = AppDomain.CurrentDomain.BaseDirectory;
+        }
+
             if (Directory.Exists(dir)) {
                 var direcotry = new DirectoryInfo(dir);
 
                 var result = new PathItem();
                 if (direcotry.Parent == null) {
                     result.PathType = PathType.Drive;
-                    result.Drives = DriveInfo.GetDrives().Select(n => new PathItem() {
+                   /* result.Drives = DriveInfo.GetDrives().Select(n => new PathItem() {
                         PathType = PathType.Drive,
                         Name = n.Name,
                         Description = n.VolumeLabel,
                         FullPath = n.Name,
                         Size = n.TotalSize
-                    }).ToList();
+                    }).ToList();*/
                     result.Directories = direcotry.GetDirectories().Select(n => {        
                         return new PathItem() {
                             Name = n.Name,
@@ -66,7 +70,7 @@ namespace WebApplication2.Controllers {
                 return result;
             }
             throw new ApplicationException("directory not found");
-        }
+        }        
     }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]

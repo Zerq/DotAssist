@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "A8OCMCGUu35UhARVYr/D5dk23xdFZ0Xw9iVZKkHOUV3zyXvqjxYbpsgpsU8h0ttwRIHUCFArvBfvx/Geml1GrQ==",
+  "dgSpecHash": "r+hNI+Dam44Mm6SkweylbfFzNY0qHTJ+sMmDVRGJ9s/F35inpYPReNnfXYDrtitLXxPX7i6pBSi7HH3UFrKkzA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zerq\\source\\repos\\DotAssist\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "/home/zerq/Documents/GitHub/DotAssist/WebApplication2/WebApplication2.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Zerq\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "/home/zerq/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/zerq/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.17/microsoft.netcore.app.host.linux-x64.7.0.17.nupkg.sha512"
   ],
   "logs": []
 }

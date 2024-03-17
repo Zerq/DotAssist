@@ -5,7 +5,7 @@ import { FileSystem } from "../../FileSystem";
 import { PathObjectLike } from "../../PathObjectLike";
 import { PathType } from "../../PathType";
 import { RenderDirectories } from "./RenderDirectories";
-import { RenderDrives } from "./RenderDrives";
+//import { RenderDrives } from "./RenderDrives";
 import { RenderFiles } from "./RenderFiles";
 import { RenderParent } from "./RenderParent";
 
@@ -59,7 +59,7 @@ export class FileView extends HTMLElement {
         this.appendChild(new Elm("div").Text(dir.FullPath.toUpperCase()).Class("PathDisplay").done());
 
         if (dir.PathType === PathType.Drive) {
-            RenderDrives(dir.Drives, this);
+           // RenderDrives(dir.Drives, this);
             RenderDirectories(dir.Directories, this);
             RenderFiles(dir.Files, this);
         }

@@ -1,6 +1,4 @@
 ﻿export class ProjectDTO {
-    public RootFolder: string;
-    public ProjectName: string;
     public Template: string;
     public Language: string = "C#";
 }
@@ -19,10 +17,8 @@ export class DotNetCLIService {
         return <Array<Template>>JSON.parse(text);
     }
 
-    public async MakeProject(projectName: string, rootFolder: string, template: string, language: string = "C#") {
+    public async MakeProject(template: string, language: string = "C#") {
         const dto = new ProjectDTO();
-        dto.ProjectName = projectName;
-        dto.RootFolder = rootFolder;
         dto.Template = template;
         dto.Language = language;
 

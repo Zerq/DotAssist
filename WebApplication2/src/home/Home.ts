@@ -68,28 +68,31 @@ export class Home {
 
         let Stage: Stages = Stages.BaseFolderSelector;
         let basefolder = "";
+        let projectName = "";
 
         App.Pipe.HandleDomainEvent(BaseFolderSelected, e => {
             Stage = Stages.DotNetTemplate;
-            this.fileSystem.ReadyTemp().then(() => {
-                //might have to rething this a bit so it run asynconusly
-            });
             basefolder = e.BaseFolder;
+            
+
         });
         App.Pipe.HandleDomainEvent(DotNetTemplateSelected, e => {
 
 
             App.Pipe.Get(DotNetCLIService).MakeProject(
-                e.ProjectName,
-                basefolder,
                 e.TemplateName,
                 null);
-
+            projectName = e.ProjectName;
          
             Stage = Stages.ScriptTemplate;
         });
         App.Pipe.HandleDomainEvent(ProjectCompleted, e => {
-            Stage = Stages.BaseFolderSelector;
+
+            this.fileSystem.MoveTempTo(basefolder, projectName).then(() => {
+                Stage = Stages.BaseFolderSelector;
+            });
+
+
         });
         App.Pipe.HandleDomainEvent(ProjectSetupAborted, e => {
             Stage = Stages.BaseFolderSelector;

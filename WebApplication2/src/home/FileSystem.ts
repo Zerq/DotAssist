@@ -10,7 +10,11 @@ export class FileSystem {
         return <PathObjectLike>JSON.parse(text);
     }
 
-    public async ReadyTemp() {
-
+    public async MoveTempTo(baseFolder: string, projectName: string) {
+        const url = `${location.origin}/directory/moveTempTo?baseFolder=${encodeURI(baseFolder)}&projectName=${projectName}`;
+        const response = await fetch(url);
+        const text = await response.text();
+          
+        
     }
 }

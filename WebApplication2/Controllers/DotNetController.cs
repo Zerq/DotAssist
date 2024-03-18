@@ -12,13 +12,11 @@ namespace WebApplication2.Controllers {
 
         [HttpPost("/new")]
         public void MakeProject([FromBody] ProjectDTO project) {
-            cli.MakeProject(project.RootFolder, project.ProjectName, project.Template, project.Language);
+            cli.MakeProject(project.Template, project.Language);
         }
     }
 
     public class ProjectDTO {
-        public string RootFolder { get; set; }
-        public string ProjectName { get; set; }
         public string Template { get; set; }
         public string Language { get; set; } = "C#";
     }

@@ -71,27 +71,26 @@ An example would be:
             }
             return result;
         }
-        public void MakeProject(string rootFolder, string projectName, string template, string language = "C#")
+        public void MakeProject(string template, string language = "C#")
         {
-            if (!Directory.Exists(rootFolder))
-            {
-                throw new ApplicationException("Folder does not exist");
+            var root = new DirectoryInfo(Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "tempProj")); //hopefully platform agnostic enought
+
+            //Allways start out with tempProj empty!
+            if (!root.Exists) {
+                root.Create();
             }
-
-            var newDir = new DirectoryInfo(rootFolder).CreateSubdirectory(projectName);
-
-            if (!newDir.Exists)
-            {
-                throw new ApplicationException("faild to create projectFolder");
+            else {
+                root.Delete(); 
+                root.Create();
             }
-
+       
             using (Process p = new Process())
             {
                 ProcessStartInfo info = new ProcessStartInfo();
-                info.FileName = "cmd.exe";
                 info.RedirectStandardInput = true;
-                info.UseShellExecute = false;
-
+                info.UseShellExecute = true;
                 p.StartInfo = info;
                 p.Start();
 
@@ -99,7 +98,7 @@ An example would be:
                 {
                     if (sw.BaseStream.CanWrite)
                     {
-                        sw.WriteLine("cd " + newDir.FullName);
+                        sw.WriteLine("cd " + root.FullName);
                         sw.WriteLine("dotnet new " + template);
                     }
                 }

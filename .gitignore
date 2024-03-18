@@ -440,3 +440,4 @@ WebApplication2/obj/Debug/net7.0/WebApplication2.genruntimeconfig.cache
 WebApplication2/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication2.props
 WebApplication2/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.WebApplication2.props
 WebApplication2/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication2.props
+/WebApplication2/package-lock.json

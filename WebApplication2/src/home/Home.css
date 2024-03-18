@@ -11,12 +11,13 @@ menu {
     menu li {
         display: inline-block;
         clear: none;
-        padding: 0.25em;
-        margin: 0.25em;
+        padding: 2px;
+        margin: 3px;
         text-align: center;
         background-color: #052c49;
-        font-size: 0.7em;
+        font-size: 8px;
         font-weight: bold;
+        border-radius: 5px;
     }
 
         menu li:hover {
@@ -35,6 +36,10 @@ dotnet-dialog .AbortButton {
     margin: 5px;
     border: solid 2px darkred;
     text-shadow: 1px 1px 1px black, 1.5px 1.5px 1px black;
+}
+dotnet-dialog .disabled {
+    background-color: #535353 !important;
+    border: solid 2px #262626 !important;
 }
 
 dotnet-dialog .CompleteButton {
@@ -56,49 +61,60 @@ dotnet-dialog .NextButton {
 menu li img {
     display: inline-block;
     clear: both;
-    width: 2.5em;
+    width: 32px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
-        menu li div {
-            font-size: .7em;
-        }
+
+menu li div {
+    font-size: 8px;
+}
 
 body {
     background-color: black;
     color: white;
-
 }
- 
+
 .ControlGroup {
-    padding-bottom: 0.1em;
+    padding-bottom: 2px;
     display: inline-block;
 }
 
 dotnet-dialog input {
     border: 0;
-    margin: 0.2em;
-    padding: 0.2em;
-    border-radius: 0.4em;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 4px;
     color: white;
     background-color: #111;
 }
-dotnet-dialog input:focus-visible {
-    background-color: #333;
-    outline: -webkit-focus-ring-color auto 0px;
-}
+
+    dotnet-dialog input:focus-visible {
+        background-color: #333;
+        outline: -webkit-focus-ring-color auto 0px;
+    }
 
 
-    dotnet-dialog .group {
+dotnet-dialog .group {
     display: inline-block;
     background-color: #704;
+    background: linear-gradient(135deg, rgba(196,48,80,1) 0%, rgba(119,0,68,1) 35%, rgba(17,0,51,1) 100%);
     margin: 5px;
     padding: 5px;
-    border-radius: 0.5em;
-    font-size: 0.7em;
+    border-radius: 10px;
+    font-size: 9px;
     border: solid 1px white;
 }
+    dotnet-dialog .group div:first-child {
+        font-weight: bold;
+        text-align:center;
+        color:bisque;
+        font-size:10px;
+    }
+    dotnet-dialog .group div:first-child::first-letter {
+        text-transform:capitalize;
+    }
 
         dotnet-dialog .group.selected {
             background-color: #570333;
@@ -107,35 +123,43 @@ dotnet-dialog input:focus-visible {
 
 
 
-        dotnet-dialog .group:hover {
-            background-color: #a37;
-        }
+    dotnet-dialog .group:hover {
+        background-color: #a37;
+    }
 
+dotnet-dialog span.lang {
+    padding-right: 3px;
+}
 
 dotnet-dialog dialog {
     background-color: black;
     color: white;
 }
 
-#FileView  img {
-width:1em;
-height: 1em;
+#FileView img {
+    width: 16px;
+    max-height: 16px;
+    vertical-align: middle;
 }
 
-
 #FileVie {
-display:block;
+    display: block;
 }
 
 #FileView .group {
     display: block;
     float: left;
-    padding: 0.15em;
+    padding: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
     background-color: #211;
+    vertical-align: central;
     margin: 2px;
-    font-size: 0.6em;
-    border-radius: 1em;
+    font-size: 9px;
+    border-radius: 0 10px 10px 0;
 }
+
     #FileView .group.dir:hover {
         background-color: #311;
     }
@@ -145,12 +169,14 @@ display:block;
         display: inline-block;
         padding-left: 2px;
         padding-right: 2px;
+        vertical-align: middle;
     }
 
 .PathDisplay {
     background-color: #111;
-    padding: 0.2em;
     border: solid 1px silver;
     margin-top: 2px;
     margin-bottom: 2px;
+    font-size: 10px;
+    width: 100%;
 }

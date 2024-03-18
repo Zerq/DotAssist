@@ -62,7 +62,7 @@ An example would be:
                             template.Name = temp;
                         }
 
-                        template.Languages = n.Substring(Languagesize.X, Languagesize.Y).Split(",").ToList();
+                        template.Languages = n.Substring(Languagesize.X, Languagesize.Y).Replace("[", "").Replace("]", "").Split(",").ToList();
 
                         return template;
                     }).ToList();
@@ -71,7 +71,7 @@ An example would be:
             }
             return result;
         }
-        public void MakeProject(string rootFolder, string projectName, Template template, string language = "C#")
+        public void MakeProject(string rootFolder, string projectName, string template, string language = "C#")
         {
             if (!Directory.Exists(rootFolder))
             {
@@ -100,7 +100,7 @@ An example would be:
                     if (sw.BaseStream.CanWrite)
                     {
                         sw.WriteLine("cd " + newDir.FullName);
-                        sw.WriteLine("dotnet new " + template.Name);
+                        sw.WriteLine("dotnet new " + template);
                     }
                 }
             }

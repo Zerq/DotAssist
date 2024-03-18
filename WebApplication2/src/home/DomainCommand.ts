@@ -6,13 +6,18 @@ export abstract class DomainCommand {
     public abstract Execute(): Array<DomainEvent>;
 }
 
+export class AbortProjectCreation extends DomainCommand {
+    public Execute(): DomainEvent[] {
+        throw new Error("Method not implemented.");
+    }
+}
 
 export class SelectBaseFolder extends DomainCommand {
     public Execute(): Array<DomainEvent> {
         const selected = new BaseFolderSelected();
         selected.BaseFolder = this.BaseFolder;
         selected.Created = new Date();
-        selected.id = Guid.NewGuid();
+        selected.Id = Guid.NewGuid();
         //selected.SequenceNumber  = ??
 
         return [selected];
@@ -25,11 +30,10 @@ export class SelectDotNetTemplate extends DomainCommand {
     public Execute(): DomainEvent[] {
         const selected = new DotNetTemplateSelected();
         selected.TemplateName = this.TemplateName;
-        selected.ProjectFolder = this.ProjectFolder;
         selected.ProjectName = this.ProjectName;
         selected.TemplatLanguage = this.TemplatLanguage;
         selected.Created = new Date();
-        selected.id = Guid.NewGuid();
+        selected.Id = Guid.NewGuid();
         //selected.SequenceNumber  = ??
         return [selected];
     }
@@ -45,27 +49,27 @@ export class SelectScriptingTemplate extends DomainCommand {
         switch (this.TemplateName) {
             case "ECMAScript":
                 const ecma = new ECMAScriptSelected();
-                ecma.id = Guid.NewGuid();
+                ecma.Id = Guid.NewGuid();
                 ecma.Created = new Date();
                 // ecma.SequenceNumber 
                 return [ecma];
             case "Webpack":
                 const webpack = new WebpackSelected();
-                webpack.id = Guid.NewGuid();
+                webpack.Id = Guid.NewGuid();
                 webpack.Created = new Date();
                 // webpack.SequenceNumber
                 return [webpack];
 
             case "Preact":
                 const preact = new PreactSelected();
-                preact.id = Guid.NewGuid();
+                preact.Id = Guid.NewGuid();
                 preact.Created = new Date();
                 // preact.SequenceNumber
                 return [preact];
 
             case "Angular":
                 const angular = new AngularSelected();
-                angular.id = Guid.NewGuid();
+                angular.Id = Guid.NewGuid();
                 angular.Created = new Date();
                 // angular.SequenceNumber
                 return [angular];

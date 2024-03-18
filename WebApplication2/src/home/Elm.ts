@@ -1,15 +1,18 @@
 ﻿
 export interface Ctr<T> {
     new(): T;
+}  
+
+export abstract class SubRender {
+    public constructor(public Id: string) { }
+    public abstract Render(): Elm;
+    public Refresh(): void {
+        const element = document.getElementById(this.Id);
+        element.innerHTML = "";
+        element.appendChild(this.Render().done());
+    }
 }
-//this is neat! give way better overview then the
-//regular DOM api and a feel of the hirarchy...
-//trying to use react templates via bable did not
-//work out reliably enought and they generate the
-//uggliest script you have ever seen! and hard to debug too!
-//it was frankly the most disgusting unsightly thing i have ever seen...
-//if i have to go with that insanity i wanna go all in on something like preact...
-//but frankly i am not entierly convinced it entierly needed...
+
 export class Elm {
     private elm: HTMLElement;
 
@@ -17,6 +20,26 @@ export class Elm {
         if (tagName != null) {
             this.elm = document.createElement(tagName);
         }
+    }
+
+    public static SubRender(subrenderer: SubRender) {
+        return new Elm("div").Id(subrenderer.Id).Swallow(() => [
+            subrenderer.Render()
+        ]);
+    }
+
+
+    public Id(id: string) {
+        this.elm.id = id;
+        return this;
+    }
+
+    public Focus(focused: boolean) {
+        if (focus) {
+            this.elm.focus();
+        }
+         
+        return this;
     }
 
     public static From(elm: HTMLElement) {
@@ -49,6 +72,21 @@ export class Elm {
         return this;
     }
 
+    public Value(value: string) {
+        this.Attr("value",value);
+        return this;
+    }
+
+    public Flag(name: string, value: boolean) {
+        if (value) {
+            this.elm.setAttribute(name, "");
+        } else {
+            if (this.elm.hasAttribute(name)) {
+                this.elm.removeAttribute(name);
+            }
+        }
+        return this;
+    }
 
     public Text(value: string) {
         this.elm.innerText = value;
@@ -67,3 +105,4 @@ export class Elm {
 
 
 }
+

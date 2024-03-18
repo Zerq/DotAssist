@@ -1,43 +1,98 @@
 ﻿import { App } from "./AppPipe";
 import { FileView } from "./Components/FileViewer/FileView";
 import { FileSystem } from "./FileSystem";
-import { DomainEvent } from "./DomainEvent";
+import { BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ProjectCompleted, ProjectSetupAborted } from "./DomainEvent";
 import { DialogResults, DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
 import { Stages } from "./Stages";
+import { DomainCommand, SelectBaseFolder } from "./DomainCommand";
+import { DotNetCLIService } from "./Components/DotNetDialog/DotNetService";
+import * as path from "path/win32";
 
 export class Home {
-    private DirectoryService = new FileSystem();
+    private fileSystem = new FileSystem();
     public Events: Map<string, DomainEvent>;
-    public stage: Stages = Stages.BaseFolderSelector;
+
+
+
+    private async ClickNewProject(fileview: FileView, dotnetDialog: DotNetDialog) {
+
+        const path = fileview.getAttribute("path");
+        const cmd = new SelectBaseFolder();
+        cmd.BaseFolder = path;
+        App.Pipe.ExecuteCommand(cmd);
+
+        const result = await dotnetDialog.ShowDialogAsync();
+        if (result === DialogResults.Complete) {
+            alert("complete");
+        }
+
+    }
+
 
     public async Run() {
-        const fileview = document.getElementById("FileView");
+        const fileview = <FileView>document.getElementById("FileView");
         const dotnetDialog = <DotNetDialog>document.querySelector("#dotnet");
 
         await App.Pipe.Register<string>("AppMenuItemClicked", async e => {
             switch (e) {
                 case "NewProject":
-                    const path = fileview.getAttribute("path");
-                    const x = 0;
-                    const result = await dotnetDialog.ShowDialogAsync();
-                    if (result === DialogResults.Complete) {
-                        alert("complete");
-                    }
-
+                    await this.ClickNewProject(fileview, dotnetDialog);
                     break;
                 case "NewFile":
-             
-
                     break;
             }
         });
+
+        App.Pipe.Register<DomainCommand>("ExecuteCommand", (e) => {
+            const events = e.Execute(); //execute here so i can add in what ever is needed to execute the command...
+            events.forEach(e => App.Pipe.SendDomainEvent(e));
+        });
+
+        this.handleEvents();
        
- 
+
+
+
+
+
+
         //const img = document.createElement("img");
         //img.src = Assets.CSharpFile;
         //img.alt = Assets.CSharpFile;
         //img.style.width = "100px";
         //img.style.height = "100px";
         //document.body.appendChild(img);
+    }
+
+    private handleEvents() {
+
+        let Stage: Stages = Stages.BaseFolderSelector;
+        let basefolder = "";
+
+        App.Pipe.HandleDomainEvent(BaseFolderSelected, e => {
+            Stage = Stages.DotNetTemplate;
+            this.fileSystem.ReadyTemp().then(() => {
+                //might have to rething this a bit so it run asynconusly
+            });
+            basefolder = e.BaseFolder;
+        });
+        App.Pipe.HandleDomainEvent(DotNetTemplateSelected, e => {
+
+
+            App.Pipe.Get(DotNetCLIService).MakeProject(
+                e.ProjectName,
+                basefolder,
+                e.TemplateName,
+                null);
+
+         
+            Stage = Stages.ScriptTemplate;
+        });
+        App.Pipe.HandleDomainEvent(ProjectCompleted, e => {
+            Stage = Stages.BaseFolderSelector;
+        });
+        App.Pipe.HandleDomainEvent(ProjectSetupAborted, e => {
+            Stage = Stages.BaseFolderSelector;
+        });
     }
 }

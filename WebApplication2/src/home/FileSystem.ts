@@ -9,4 +9,8 @@ export class FileSystem {
         const text = await response.text();
         return <PathObjectLike>JSON.parse(text);
     }
+
+    public async ReadyTemp() {
+
+    }
 }

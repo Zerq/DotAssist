@@ -19,7 +19,7 @@ namespace WebApplication2.Controllers {
     public class ProjectDTO {
         public string RootFolder { get; set; }
         public string ProjectName { get; set; }
-        public Template Template { get; set; }
+        public string Template { get; set; }
         public string Language { get; set; } = "C#";
     }
 

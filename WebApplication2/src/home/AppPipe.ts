@@ -1,4 +1,5 @@
-﻿import { DomainEvent } from "./DomainEvent";
+﻿import { DomainCommand } from "./DomainCommand";
+import { DomainEvent } from "./DomainEvent";
 import { Elm, Ctr } from "./Elm";
 
 export function test() {
@@ -30,6 +31,14 @@ export class App {
         this.SendEvent(domainEvent.EventName, domainEvent);
     }
 
+    public HandleDomainEvent<T extends DomainEvent>(domainEvent: Ctr<T>, callback: (event: T) => void) {
+        this.Register(domainEvent.name, callback);
+    }
+
+    public ExecuteCommand(domainCommand: DomainCommand) {
+        this.SendEvent("ExecuteCommand", domainCommand);
+    }
+
     public SendEvent<T>(eventName:string, event: T) {
         let recived = false;
         if (this.eventSubscribers.has(eventName)) {
@@ -43,10 +52,6 @@ export class App {
             console.log(eventName +  event, "recived =" + recived);
 
 
-    }
-
-    public HandleDomainEvent(eventType: Ctr<DomainEvent>, callback: (event: any) => void) {
-        this.Register(eventType.name, callback);
     }
 
     public Register<T>(eventName: string, callback: (event: T) => void) {

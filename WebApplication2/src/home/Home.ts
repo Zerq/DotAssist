@@ -1,7 +1,7 @@
 ﻿import { App } from "./AppPipe";
 import { FileView } from "./Components/FileViewer/FileView";
 import { FileSystem } from "./FileSystem";
-import { BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ProjectCompleted, ProjectSetupAborted } from "./DomainEvent";
+import { BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ProjectCreationCompleted, ProjectSetupAborted } from "./DomainEvent";
 import { DialogResults, DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
 import { Stages } from "./Stages";
 import { DomainCommand, SelectBaseFolder } from "./DomainCommand";
@@ -20,10 +20,10 @@ export class Home {
         const cmd = new SelectBaseFolder();
         cmd.BaseFolder = path;
         App.Pipe.ExecuteCommand(cmd);
-
+        dotnetDialog.baseDirectory = path;
         const result = await dotnetDialog.ShowDialogAsync();
         if (result === DialogResults.Complete) {
-            alert("complete");
+    
         }
 
     }
@@ -48,7 +48,7 @@ export class Home {
             events.forEach(e => App.Pipe.SendDomainEvent(e));
         });
 
-        this.handleEvents();
+        this.handleEvents(fileview);
        
 
 
@@ -64,11 +64,11 @@ export class Home {
         //document.body.appendChild(img);
     }
 
-    private handleEvents() {
+    private handleEvents(fileView: FileView) {
 
         let Stage: Stages = Stages.BaseFolderSelector;
         let basefolder = "";
-        let projectName = "";
+
 
         App.Pipe.HandleDomainEvent(BaseFolderSelected, e => {
             Stage = Stages.DotNetTemplate;
@@ -76,23 +76,20 @@ export class Home {
             
 
         });
-        App.Pipe.HandleDomainEvent(DotNetTemplateSelected, e => {
-
-
-            App.Pipe.Get(DotNetCLIService).MakeProject(
+        App.Pipe.HandleDomainEvent(DotNetTemplateSelected, async e => {
+            await App.Pipe.Get(DotNetCLIService).MakeProject(
+                e.ProjectName,
+                e.BaseDirectory,
                 e.TemplateName,
-                null);
-            projectName = e.ProjectName;
-         
-            Stage = Stages.ScriptTemplate;
+                null).then(async () => {          
+                    Stage = Stages.ScriptTemplate;
+                    const pathObject = await App.Pipe.Get(FileSystem).GetDirectory(e.BaseDirectory);
+                    await fileView.Render(pathObject);
+                })
+     
         });
-        App.Pipe.HandleDomainEvent(ProjectCompleted, e => {
-
-            this.fileSystem.MoveTempTo(basefolder, projectName).then(() => {
-                Stage = Stages.BaseFolderSelector;
-            });
-
-
+        App.Pipe.HandleDomainEvent(ProjectCreationCompleted, e => {
+            Stage = Stages.BaseFolderSelector;
         });
         App.Pipe.HandleDomainEvent(ProjectSetupAborted, e => {
             Stage = Stages.BaseFolderSelector;

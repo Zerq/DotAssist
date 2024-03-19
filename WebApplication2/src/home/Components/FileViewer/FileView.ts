@@ -34,7 +34,7 @@ export class FileView extends HTMLElement {
     public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
         if (name === "path") {
 
-            const pathItem = App.Pipe.Get(FileSystem).GetDrives(newValue).then(n => {
+            const pathItem = App.Pipe.Get(FileSystem).GetDirectory(newValue).then(n => {
                 this.Render(n);
                 App.Pipe.SendEvent("FilePathChanged", newValue);
             });        
@@ -44,7 +44,7 @@ export class FileView extends HTMLElement {
     public connectedCallback() {
         if (this.hasAttribute("path")) {
             const newValue = this.getAttribute("path");
-            const pathItem = App.Pipe.Get(FileSystem).GetDrives(newValue).then(n => {
+            const pathItem = App.Pipe.Get(FileSystem).GetDirectory(newValue).then(n => {
                 this.Render(n);
             });  
         }

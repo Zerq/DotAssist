@@ -28,6 +28,11 @@ export class Elm {
         ]);
     }
 
+    public Html(txt: string) {
+        this.elm.innerHTML = txt;
+        return this;
+    }
+
 
     public Id(id: string) {
         this.elm.id = id;

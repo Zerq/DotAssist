@@ -1,5 +1,5 @@
 ﻿import { App } from "../../AppPipe";
-import { AbortProjectCreation, SelectDotNetTemplate } from "../../DomainCommand";
+import { AbortProjectCreation, CompleteProjectCreation, SelectDotNetTemplate } from "../../DomainCommand";
 import { Elm, SubRender } from "../../Elm";
 import { DotNetCLIService, Template } from "./DotNetService";
 
@@ -51,26 +51,33 @@ export abstract class AbstractDialog extends HTMLElement {
 export class TemplateSelector extends SubRender {
     public constructor(
         id: string,
+        private tags : Array<string>,
         private templates: Array<Template>,
-        private selectedTemplate: string,
+        private setSelected: (n: string) => void,
+        private getSelected: () => string,
         private click?: ()=> void
     ) {
         super(id)
     }
 
     public Render(): Elm {
-        return new Elm("div").Class("Templates").EatArray(this.templates, n =>
-            new Elm("div").Class(
-                ...(n.Name == this.selectedTemplate ? ["group", "selected"] : ["group"])
-            ).Evt("click", e => {
-                this.selectedTemplate = n.Name;                  
-                this.Refresh();
-                this.click();
-            }).Swallow(() => [
-                new Elm("div").Text(n.Name),
-                new Elm("div").Text(n.FullName),
-                new Elm("div").EatArray(n.Languages, n => new Elm("span").Class("lang").Text(n))
-            ]));
+        return new Elm("div").Class("OuterTemplateWrapper").Swallow(() => [
+            new Elm("div").Class("Categories").EatArray(this.tags, n => new Elm("div").Text(n)),
+
+            new Elm("div").Class("Templates").EatArray(this.templates, n =>
+                new Elm("div").Class(
+                    ...(n.Name == this.getSelected() ? ["group", "selected"] : ["group"])
+                ).Evt("click", e => {
+                    this.setSelected(n.Name);
+                    this.Refresh();
+                    this.click();
+                }).Swallow(() => [
+                    new Elm("span").Text(n.Name),
+                    new Elm("span").Text(n.FullName),
+                    new Elm("span").EatArray(n.Languages, n => new Elm("span").Class("lang").Text(n))
+                ]))
+        ]);
+
     }
 }
 
@@ -87,6 +94,7 @@ export class DotNetDialog extends AbstractDialog {
  
     public selectedTemplate = "";
     public projectName = "";
+    public baseDirectory = "";
     public templates: Array<Template>;
 
 
@@ -94,8 +102,21 @@ export class DotNetDialog extends AbstractDialog {
         super();
     }
 
+    private tags: Array<string>;
+
     public async FirstRender() {
         this.templates = await App.Pipe.Get(DotNetCLIService).GetTemplates();
+        const temp = new Map();
+        this.templates.forEach(n => {     
+            n.Tags.forEach(t => {
+                let x = t.trim();
+                temp.set(x, x);
+            });
+        })
+        this.tags = Array.from(temp.keys());
+        this.tags.sort();
+
+
         await this.Render();
     }
 
@@ -114,7 +135,7 @@ export class DotNetDialog extends AbstractDialog {
                 nextElm.classList.remove("disabled");
             }
         }
-        const valid = "ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789_Backspace";
+        const valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_Backspace";
 
         const sanitize = (n: KeyboardEvent) => {
             if (n.key === " ") {
@@ -135,8 +156,8 @@ export class DotNetDialog extends AbstractDialog {
             validate();
         };
 
- 
-        const templateSelector = new TemplateSelector("templateSelector", this.templates, this.ariaSelected, validate);
+
+        const templateSelector = new TemplateSelector("templateSelector", this.tags, this.templates, s => this.selectedTemplate = s, () => this.selectedTemplate, validate);
 
         const abort = (e: Event) => {
             const cmd = new AbortProjectCreation();
@@ -152,8 +173,11 @@ export class DotNetDialog extends AbstractDialog {
             const cmd = new SelectDotNetTemplate();
             cmd.ProjectName = this.projectName;
             cmd.TemplateName = this.selectedTemplate;
+            cmd.BaseDirectory = this.baseDirectory;
+            App.Pipe.ExecuteCommand(cmd);
 
-            console.log(cmd);
+            App.Pipe.ExecuteCommand(new CompleteProjectCreation());
+
             this.DialogResult = DialogResults.Complete;
         };
         const next = (e: Event) => {
@@ -162,12 +186,8 @@ export class DotNetDialog extends AbstractDialog {
 
             const cmd = new SelectDotNetTemplate();
             cmd.ProjectName = this.projectName;
-            cmd.TemplateName = this.selectedTemplate;
-            console.log(cmd);
-
+            cmd.TemplateName = this.selectedTemplate.trim();
             App.Pipe.ExecuteCommand(cmd);
-
-
             this.DialogResult = DialogResults.Next;
         };
 
@@ -179,21 +199,21 @@ export class DotNetDialog extends AbstractDialog {
             Elm.SubRender(templateSelector),
 
             new Elm("fieldset").Swallow(() => [
-                new Elm("legend").Text("File options"),
+
                 new Elm("div").Class("ControlGroup").Swallow(() => [
                     new Elm("span").Text("Project Name: "),
                     new Elm("input")
                         .Id("projectName")
                         .Value(this.projectName)
-                        .Evt("keydown", sanitize).Evt("keyup",  changeProjName),
-                ])     
+                        .Evt("keydown", sanitize).Evt("keyup", changeProjName),
+                ])
             ]),
             new Elm("div").Class("ButtonGroup").Swallow(() => [
                 new Elm("button").Text("Abort").Class("AbortButton", "dialogButton")
                     .Evt("click", abort), ,
                 new Elm("button").Text("Complete").Class("CompleteButton", "dialogButton", "disabled")
                     .Evt("click", complete).Id("complete"),
-                new Elm("button").Text("Next").Class("NextButton", "dialogButton", "disabled")
+                new Elm("button").Html("Next").Class("NextButton", "dialogButton", "disabled")
                     .Evt("click", next).Id("next"),
             ])
         ])

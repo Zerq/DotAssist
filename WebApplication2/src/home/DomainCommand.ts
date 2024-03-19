@@ -1,10 +1,18 @@
-﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, WebpackSelected } from "./DomainEvent";
+﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, ProjectCreationCompleted, WebpackSelected } from "./DomainEvent";
 import { Guid } from "./Guid";
 
 
 export abstract class DomainCommand {
     public abstract Execute(): Array<DomainEvent>;
 }
+
+
+export class CompleteProjectCreation extends DomainCommand {
+    public Execute(): DomainEvent[] {
+        return [new ProjectCreationCompleted()];
+    }
+}
+
 
 export class AbortProjectCreation extends DomainCommand {
     public Execute(): DomainEvent[] {
@@ -29,8 +37,9 @@ export class SelectBaseFolder extends DomainCommand {
 export class SelectDotNetTemplate extends DomainCommand {
     public Execute(): DomainEvent[] {
         const selected = new DotNetTemplateSelected();
+        selected.ProjectName = this.ProjectName,
         selected.TemplateName = this.TemplateName;
-        selected.ProjectName = this.ProjectName;
+        selected.BaseDirectory = this.BaseDirectory;
         selected.TemplatLanguage = this.TemplatLanguage;
         selected.Created = new Date();
         selected.Id = Guid.NewGuid();
@@ -39,7 +48,7 @@ export class SelectDotNetTemplate extends DomainCommand {
     }
 
     public ProjectName: string;
-    public ProjectFolder?: string;
+    public BaseDirectory: string;
     public TemplateName: string;
     public TemplatLanguage?: string;
 }

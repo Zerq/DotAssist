@@ -14,9 +14,11 @@ export class BaseFolderSelected extends DomainEvent {
 }
 
 export class DotNetTemplateSelected extends DomainEvent {
+ 
     public constructor() { super(); }
     public EventName = DotNetTemplateSelected.name;
     public ProjectName: string;
+    public BaseDirectory: string;
     public TemplateName: string;
     public TemplatLanguage?: string;
 }
@@ -42,10 +44,10 @@ export class WebpackSelected extends DomainEvent {
 
 export class ProjectSetupAborted extends DomainEvent {
     public constructor() { super(); }
-    public EventName = WebpackSelected.name;
+    public EventName = ProjectSetupAborted.name;
 }
 
-export class ProjectCompleted extends DomainEvent {
+export class ProjectCreationCompleted extends DomainEvent {
     public constructor() { super(); }
-    public EventName = WebpackSelected.name;
+    public EventName = ProjectCreationCompleted.name;
 }

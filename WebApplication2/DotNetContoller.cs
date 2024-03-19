@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace WebApplication2
@@ -14,7 +15,7 @@ namespace WebApplication2
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
-                    Arguments = "new",
+                    Arguments = "new list",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true
@@ -35,7 +36,9 @@ An example would be:
                     var matches = sizer.Matches(tempString);
                     var longNameSize = new Point(matches[0].Index, matches[0].Value.Length);
                     var shortNameSize = new Point(matches[1].Index, matches[1].Value.Length);
-                    var Languagesize = new Point(matches[2].Index, matches[2].Value.Length);
+                    var LanguageSize = new Point(matches[2].Index, matches[2].Value.Length);
+                    var tagSize = new Point(matches[3].Index, matches[3].Value.Length);
+
 
                     var lastThingy = @"-
 ";
@@ -48,6 +51,8 @@ An example would be:
                     result = rows.Select(n =>
                     {
                         var template = new Template();
+
+                        template.Tags = n.Substring(tagSize.X, tagSize.Y - 1).Split("/").ToList();
 
                         template.FullName = n.Substring(longNameSize.X, longNameSize.Y);
 
@@ -62,7 +67,7 @@ An example would be:
                             template.Name = temp;
                         }
 
-                        template.Languages = n.Substring(Languagesize.X, Languagesize.Y).Replace("[", "").Replace("]", "").Split(",").ToList();
+                        template.Languages = n.Substring(LanguageSize.X, LanguageSize.Y).Replace("[", "").Replace("]", "").Split(",").ToList();
 
                         return template;
                     }).ToList();
@@ -71,26 +76,26 @@ An example would be:
             }
             return result;
         }
-        public void MakeProject(string template, string language = "C#")
+        public void MakeProject(string projectName, string baseDirectory, string template, string language = "C#")
         {
-            var root = new DirectoryInfo(Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "tempProj")); //hopefully platform agnostic enought
+            var root = new DirectoryInfo(Path.Combine( baseDirectory, projectName));
 
-            //Allways start out with tempProj empty!
             if (!root.Exists) {
                 root.Create();
             }
-            else {
-                root.Delete(); 
-                root.Create();
-            }
-       
+
             using (Process p = new Process())
             {
                 ProcessStartInfo info = new ProcessStartInfo();
+ 
+                var shellName = "/bin/bash";
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                    shellName = "cmd";
+                }
+
                 info.RedirectStandardInput = true;
-                info.UseShellExecute = true;
+                info.UseShellExecute = false;
+                info.FileName = shellName;
                 p.StartInfo = info;
                 p.Start();
 
@@ -111,6 +116,7 @@ An example would be:
     {
         public string FullName { get; set; }
         public string Name { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
         public List<string> Languages { get; set; } = new List<string>();
     }
 }

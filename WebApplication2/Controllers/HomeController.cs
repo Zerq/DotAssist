@@ -18,7 +18,17 @@ namespace WebApplication2.Controllers {
         public PathItem? Open(string dir) {
             try {
                 if (dir == "root") {
-                    dir = AppDomain.CurrentDomain.BaseDirectory;
+
+
+
+
+                 string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
+                   Environment.OSVersion.Platform == PlatformID.MacOSX)
+    ? Environment.GetEnvironmentVariable("HOME")
+    : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
+
+                    dir = homePath;
+                    //dir = AppDomain.CurrentDomain.BaseDirectory;
                 }
 
                 if (Directory.Exists(dir)) {
@@ -70,12 +80,36 @@ namespace WebApplication2.Controllers {
                     }
                     return result;
                 }
-                return null;  
+                return null;
             }
             catch (ApplicationException ex) {
                 return null;
             }
         }
+
+        [HttpGet("movetempto")]
+        public void moveTempTo(string baseFolder, string projectName) {
+
+            if (baseFolder == "root") {
+                baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+            }
+
+
+            var folder = new FileInfo(Path.Combine(baseFolder, projectName));
+            if (!folder.Exists) {
+                folder.Create();
+            }
+
+            var temp = new DirectoryInfo(Path.Combine(
+          AppDomain.CurrentDomain.BaseDirectory,
+          "tempProj"));
+
+            temp.MoveTo(folder.FullName);
+
+
+        }
+
+
     }
 }
 

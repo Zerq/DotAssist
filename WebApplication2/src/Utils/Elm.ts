@@ -1,4 +1,5 @@
-﻿
+﻿import { Guid } from "../Home/Models/Guid";
+
 export interface Ctr<T> {
     new(): T;
 }  
@@ -13,6 +14,15 @@ export abstract class SubRender {
     }
 }
 
+export class RefreshToken {
+    public Id = Guid.NewGuid();
+    public Refresh: () => void;
+    public cache: Elm;
+    public constructor(public tempalte: () => Elm) {
+    }
+}
+
+
 export class Elm {
     private elm: HTMLElement;
 
@@ -22,11 +32,7 @@ export class Elm {
         }
     }
 
-    public static SubRender(subrenderer: SubRender) {
-        return new Elm("div").Id(subrenderer.Id).Swallow(() => [
-            subrenderer.Render()
-        ]);
-    }
+ 
 
     public Html(txt: string) {
         this.elm.innerHTML = txt;
@@ -53,6 +59,18 @@ export class Elm {
         return result;
     }
 
+    public static Refreshable(token: RefreshToken) {
+        token.Refresh = () => {
+            const div = document.getElementById(token.Id.toString());
+            div.innerHTML = "";
+            div.appendChild(token.tempalte().done());
+        };
+
+        return new Elm("div").Id(token.Id.toString()).Swallow(() => [
+            token.tempalte()
+        ]);
+    }
+
     public Evt<K extends keyof HTMLElementEventMap>(type: K | string, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions) {
         this.elm.addEventListener(type, listener);
         return this;
@@ -67,8 +85,17 @@ export class Elm {
         return this;
     }
 
+    public ClassIf(clss: string, condition: boolean) {
+        if (condition) {
+            this.elm.classList.add(clss);
+        } else {
+            this.elm.classList.remove(clss);
+        }
+        return this;
+    }
+
     public Class(...classes: Array<string>) {
-        classes.forEach(n => this.elm.classList.add(...classes));
+        this.elm.classList.add(...classes);
         return this;
     }
 

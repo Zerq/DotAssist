@@ -1,6 +1,6 @@
-﻿import { DomainCommand } from "./DomainCommand";
-import { DomainEvent } from "./DomainEvent";
-import { Elm, Ctr } from "./Elm";
+﻿import { DomainCommand } from "../Commands/DomainCommand";
+import { DomainEvent } from "../Events/DomainEvent";
+import { Ctr, Elm } from "./Elm";
 
 export function test() {
 

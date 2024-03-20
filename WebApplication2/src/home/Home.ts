@@ -1,11 +1,11 @@
-﻿import { App } from "./AppPipe";
+﻿import { App } from "../Utils/AppPipe";
 import { FileView } from "./Components/FileViewer/FileView";
-import { FileSystem } from "./FileSystem";
-import { BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ProjectCreationCompleted, ProjectSetupAborted } from "./DomainEvent";
+import { FileSystem } from "./Services/FileSystem";
+import { BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ProjectCreationCompleted, ProjectSetupAborted } from "../Events/DomainEvent";
 import { DialogResults, DotNetDialog } from "./Components/DotNetDialog/DotNetDialog";
-import { Stages } from "./Stages";
-import { DomainCommand, SelectBaseFolder } from "./DomainCommand";
-import { DotNetCLIService } from "./Components/DotNetDialog/DotNetService";
+import { Stages } from "./Models/Stages";
+import { DomainCommand, SelectBaseFolder } from "../Commands/DomainCommand";
+import { DotNetCLIService } from "./Services/DotNetService";
 import * as path from "path/win32";
 
 export class Home {

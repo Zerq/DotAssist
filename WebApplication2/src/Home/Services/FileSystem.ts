@@ -1,4 +1,4 @@
-﻿import { PathObjectLike } from "./PathObjectLike";
+﻿import { PathObjectLike } from "../Models/PathObjectLike";
 export class FileSystem {
     public constructor() {
     }

@@ -1,9 +1,9 @@
-﻿import { App } from "../../AppPipe";
-import { Elm } from "../../Elm";
-import { Assets } from "../../Assets";
-import { FileSystem } from "../../FileSystem";
-import { PathObjectLike } from "../../PathObjectLike";
-import { PathType } from "../../PathType";
+﻿import { App } from "../../../Utils/AppPipe";
+import { Elm } from "../../../Utils/Elm";
+import { Assets } from "../../../Utils/Assets";
+import { FileSystem } from "../../Services/FileSystem";
+import { PathObjectLike } from "../../Models/PathObjectLike";
+import { PathType } from "../../Models/PathType";
 import { RenderDirectories } from "./RenderDirectories";
 //import { RenderDrives } from "./RenderDrives";
 import { RenderFiles } from "./RenderFiles";

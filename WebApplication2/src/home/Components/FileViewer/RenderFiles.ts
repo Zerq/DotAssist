@@ -1,6 +1,6 @@
-﻿import { Elm } from "../../Elm";
-import { Assets, FileLookUp } from "../../Assets";
-import { PathObjectLike } from "../../PathObjectLike";
+﻿import { Assets, FileLookUp } from "../../../Utils/Assets";
+import { Elm } from "../../../Utils/Elm";
+import { PathObjectLike } from "../../Models/PathObjectLike";
 import { FileView } from "./FileView";
 import { formatSize } from "./formatSize";
 

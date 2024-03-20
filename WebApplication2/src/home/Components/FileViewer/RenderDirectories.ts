@@ -1,7 +1,6 @@
-﻿import { App } from "../../AppPipe";
-import { Elm } from "../../Elm";
-import { Assets } from "../../Assets";
-import { PathObjectLike } from "../../PathObjectLike";
+﻿import { Assets } from "../../../Utils/Assets";
+import { Elm } from "../../../Utils/Elm";
+import { PathObjectLike } from "../../Models/PathObjectLike";
 import { FileView } from "./FileView";
 
 export const RenderDirectories = (directories: Array<PathObjectLike>, fileView: FileView) => {

@@ -1,18 +1,15 @@
-﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, ProjectCreationCompleted, WebpackSelected } from "./DomainEvent";
-import { Guid } from "./Guid";
-
+﻿import { AngularSelected, BaseFolderSelected, DomainEvent, DotNetTemplateSelected, ECMAScriptSelected, PreactSelected, ProjectCreationCompleted, WebpackSelected } from "../Events/DomainEvent";
+import { Guid } from "../Home/Models/Guid";
 
 export abstract class DomainCommand {
     public abstract Execute(): Array<DomainEvent>;
 }
-
 
 export class CompleteProjectCreation extends DomainCommand {
     public Execute(): DomainEvent[] {
         return [new ProjectCreationCompleted()];
     }
 }
-
 
 export class AbortProjectCreation extends DomainCommand {
     public Execute(): DomainEvent[] {

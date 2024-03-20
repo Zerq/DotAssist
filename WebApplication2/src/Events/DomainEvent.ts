@@ -1,4 +1,4 @@
-﻿import { Guid } from "./Guid";
+﻿import { Guid } from "../Home/Models/Guid";
 
 export abstract class DomainEvent {
     public Id: Guid;

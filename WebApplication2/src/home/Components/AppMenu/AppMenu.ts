@@ -1,6 +1,6 @@
-﻿import { App } from "../../AppPipe";
-import { Elm } from "../../Elm";
-import { Assets } from "../../Assets";
+﻿import { App } from "../../../Utils/AppPipe";
+import { Assets } from "../../../Utils/Assets";
+import { Elm } from "../../../Utils/Elm";
 
 export class AppMenu extends HTMLElement {
     public constructor() {

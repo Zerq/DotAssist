@@ -7,6 +7,7 @@ using WebApplication4.Hubs;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddCors();
 builder.Services.AddControllers().AddJsonOptions(o => {
     o.JsonSerializerOptions.PropertyNameCaseInsensitive = false;

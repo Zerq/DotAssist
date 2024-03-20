@@ -87,35 +87,28 @@ An example would be:
             using (Process p = new Process())
             {
                 ProcessStartInfo info = new ProcessStartInfo();
- 
-                var shellName = "/bin/bash";
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-                    shellName = "cmd";
-                }
-
                 info.RedirectStandardInput = true;
                 info.UseShellExecute = false;
-                info.FileName = shellName;
+                info.FileName = "dotnet";
+                info.Arguments ="new " + template;
+                info.WorkingDirectory = root.FullName;
                 p.StartInfo = info;
                 p.Start();
-
-                using (StreamWriter sw = p.StandardInput)
-                {
-                    if (sw.BaseStream.CanWrite)
-                    {
-                        sw.WriteLine("cd " + root.FullName);
-                        sw.WriteLine("dotnet new " + template);
-                    }
-                }
+                p.OutputDataReceived += datarecived;               
             }
+        }
+
+        private void datarecived(object sender, DataReceivedEventArgs e)
+        {
+             Console.Write(e.Data);
         }
     }
 
 
     public class Template
     {
-        public string FullName { get; set; }
-        public string Name { get; set; }
+        public string FullName { get; set; } ="";
+        public string Name { get; set; } = "";
         public List<string> Tags { get; set; } = new List<string>();
         public List<string> Languages { get; set; } = new List<string>();
     }

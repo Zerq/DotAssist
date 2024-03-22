@@ -1,13 +1,20 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Dynamic;
 using System.IO.Compression;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace WebApplication2 {
 
+    [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum TemplateType {
+        project,
+        file
+    }
 
     public class NugetPackage {
         public string author { get; set; }
@@ -20,15 +27,14 @@ namespace WebApplication2 {
     }
 
     public class DotNetCli {
-
-
         public List<DirectoryInfo> GetVersions() {
             string dotNetLocation = "C:\\Program Files\\dotnet\\templates";
 
             return new DirectoryInfo(dotNetLocation).GetDirectories().ToList();
         }
+
         // List<Template>
-        public List<ExpandoObject> GetTemplates1(string version) {
+        public List<ExpandoObject> GetTemplates(string version, TemplateType type) {
             List<ExpandoObject> result = new List<ExpandoObject>();
             foreach (var file in this.GetVersions().FirstOrDefault(n => n.Name == version).GetFiles()) {
                 using (var archive = ZipFile.OpenRead(file.FullName)) {
@@ -36,8 +42,22 @@ namespace WebApplication2 {
                     foreach (var templateEntry in archive.Entries.Where(n => n.Name == "template.json")) {
                         using (Stream stream = templateEntry.Open()) {
                             using (TextReader reader = new StreamReader(stream)) {
-                                var item = JsonConvert.DeserializeObject<ExpandoObject>(reader.ReadToEnd());
-                                result.Add(item);
+                                var text = reader.ReadToEnd();
+                                dynamic item = JsonConvert.DeserializeObject<ExpandoObject>(text);
+
+                                if (item == null) {
+                                    continue;
+                                }
+
+                                if (type == TemplateType.project &&
+                                   ((IDictionary<String, object>)item).ContainsKey("tags") &&
+                                   item.tags.type == "project") {
+                                    result.Add(item);
+                                }
+
+                                if (type == TemplateType.file && item != null) {
+                                    result.Add(item);
+                                }
                             }
                         }
                     }
@@ -46,10 +66,7 @@ namespace WebApplication2 {
             return result;
         }
 
-
-
-
-        public List<Template> GetTemplates() {
+        public List<Template> GetTemplatesOld() {
 
             List<Template> result = new List<Template>();
             using (var proc = new Process {

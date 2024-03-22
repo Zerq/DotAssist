@@ -1,6 +1,7 @@
 ﻿import { App } from "../../../Utils/AppPipe";
 import { Assets } from "../../../Utils/Assets";
 import { Elm } from "../../../Utils/Elm";
+import { DotNetCLIService } from "../../Services/DotNetService";
 
 export class AppMenu extends HTMLElement {
     public constructor() {
@@ -24,9 +25,21 @@ export class AppMenu extends HTMLElement {
     public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     }
 
+    private versions: Array<string>;
+
     public connectedCallback() {
-        this.render();
+        App.Pipe.Get(DotNetCLIService).GetVersions().then(n => {
+            n.sort().reverse();
+           this.versions = n;
+           this.render();
+
+           App.Pipe.SendEvent(App.Commands.SelectedVersion, n[0]);
+       });
+
+
+
     }
+
     private render() {
         this.innerHTML = "";
         this.appendChild(
@@ -42,8 +55,23 @@ export class AppMenu extends HTMLElement {
                         new Elm("img").Attr("src", Assets.AddFile),
                         new Elm("div").Text("New File")
                     ]).Evt("click", e => {
-                        App.Pipe.SendEvent("AppMenuItemClicked", "NewFile");;
+                        App.Pipe.SendEvent(App.Commands.AppMenuItemClicked, "NewFile");;
                     }),
+                    new Elm("li").Swallow(() => [
+                        new Elm("img").Attr("src", Assets.AddFile),
+                        new Elm("div").Text("New Directory")
+                    ]).Evt("click", e => {
+                        App.Pipe.SendEvent(App.Commands.AppMenuItemClicked, "NewDirectory");;
+                    }),
+                    new Elm("li").Class("noClick").Swallow(() => [
+                        new Elm("span").Text("DotNet Version: "),
+                        new Elm("select").Id("versionSelected")
+                            .Class("custom-select")
+                            .Evt("change", e => {
+                            const select = <HTMLSelectElement>e.target;
+                            App.Pipe.SendEvent(App.Commands.SelectedVersion, select.value);
+                        }).EatArray(this.versions, n => new Elm("option").Text(n))
+                    ])
                 ])
             ]).done()
         );

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
 using System.Security.Cryptography.X509Certificates;
 
 namespace WebApplication2.Controllers {
@@ -6,9 +7,14 @@ namespace WebApplication2.Controllers {
     public class DotNetController : Controller {
         private DotNetCli cli = new DotNetCli();
      
+        [HttpGet("versions")]
+        public List<string> ListVersions() {
+            return this.cli.GetVersions().Select(n=> n.Name).ToList();
+        }
+
         [HttpGet("templates")]
-        public List<Template> GetTemplates() {
-            return this.cli.GetTemplates();
+        public List<ExpandoObject> GetTemplates(string version, TemplateType type) {
+            return this.cli.GetTemplates(version, type);
         }
 
         [HttpPost("new")]

@@ -1,20 +1,27 @@
-﻿export class ProjectDTO {
-    public ProjectName: string;
-    public BaseDirectory: string;
-    public Template: string;
-    public Language: string = "C#";
-}
+﻿import { ProjectDTO } from "../Models/ProjectDTO";
+import { Template } from "../Models/Template";
 
-export class Template {
-    public FullName: string;
-    public Name: string;
-    public Tags = new Array<string>();
-    public Languages = new Array<string>();
+export enum TemplateType {
+    project="project",
+    file="file"
 }
 
 export class DotNetCLIService {
-    public async GetTemplates(): Promise<Array<Template>> {
-        const url = location.origin+"/dotnet/templates";
+
+    public async GetVersions(): Promise<Array<string>> {
+        const url = location.origin + "/dotnet/versions";
+        const response = await fetch(url);
+        const text = await response.text();
+        return <Array<string>>JSON.parse(text);
+    }
+
+
+    public async GetTemplates(version: string, type: TemplateType): Promise<Array<Template>> {
+        if (!version) {
+            return [];
+        }
+
+        const url = `${location.origin}/dotnet/templates?version=${version}&type=${type}`;
         const response = await fetch(url);
         const text = await response.text();
         return <Array<Template>>JSON.parse(text);

@@ -1,34 +1,63 @@
 ﻿import { App } from "../../../Utils/AppPipe";
 import { AbortProjectCreation, CompleteProjectCreation, SelectDotNetTemplate } from "../../../Commands/DomainCommand";
 import { Elm, RefreshToken, SubRender } from "../../../Utils/Elm";
-import { DotNetCLIService, Template } from "../../Services/DotNetService";
+import { DotNetCLIService, TemplateType } from "../../Services/DotNetService";
+import { DialogResults } from "../../Models/DialogResults";
+import { Template } from "../../Models/Template";
 
-export enum DialogResults {
-    Yes, No, Ok, Next, Complete, Abort, Cancel, Back
-}
-
-export abstract class AbstractDialog extends HTMLElement {
+export class DotNetDialog extends HTMLElement {
     public constructor() {
         super();
         this.innerDialog = document.createElement("dialog");
         this.append(this.innerDialog);
     }
     protected innerDialog: HTMLDialogElement;
+    private selectedTemplate = "";
+    private selectedLanguage = "";
+    private projectName = "";
+    private baseDirectory = "";
+    private templates: Array<Template>;
 
-    protected abstract reset(): void;
+    private tags: Array<string>;
 
-    //public static observedAttributes = new Array<string>();  <-- implement on each inheriting class
+    public version: string;
+
+    protected reset(): void {
+        this.selectedTemplate = "";
+        this.projectName = "";
+        this.templates = new Array<Template>;
+        this.FirstRender().then(n => {
+        });
+    }
+
+    public static observedAttributes: Array<string> = [
+        "version", "path"
+    ];
 
     public adoptedCallback() { }
 
     public disconnectedCallback() { }
 
     public attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        if (name === "version") {
+            this.version = newValue;
 
+            if (this.baseDirectory) {
+                this.FirstRender()
+            }
+        }
+
+        if (name === "path") {
+            this.baseDirectory = newValue;
+
+            if (this.version) {
+                this.FirstRender()
+            }
+        }
     }
 
     public connectedCallback() {
-        this.FirstRender()
+
     }
 
     private dialogResult: DialogResults;
@@ -52,40 +81,13 @@ export abstract class AbstractDialog extends HTMLElement {
             });
         })
     }
-    public abstract Render(): void;
-    abstract FirstRender(): Promise<void>;
-}
-
-export class DotNetDialog extends AbstractDialog {
-    protected reset(): void {
-        this.selectedTemplate = "";
-        this.projectName = "";
-        this.templates = new Array<Template>;
-        this.FirstRender().then(n => {
-        });
-    }
-
-    public static observedAttributes = new Array<string>();
-
-    public selectedTemplate = "";
-    public projectName = "";
-    public baseDirectory = "";
-    public templates: Array<Template>;
-
-
-    public constructor() {
-        super();
-    }
-
-    private tags: Array<string>;
 
     public async FirstRender() {
-        this.templates = await App.Pipe.Get(DotNetCLIService).GetTemplates();
+        this.templates = await App.Pipe.Get(DotNetCLIService).GetTemplates(this.version, TemplateType.project);
         const temp = new Map();
         this.templates.forEach(n => {
-            n.Tags.forEach(t => {
-                let x = t.trim();
-                temp.set(x, x);
+            n.classifications.forEach(t => {
+                temp.set(t, t);
             });
         })
         this.tags = Array.from(temp.keys());
@@ -131,13 +133,22 @@ export class DotNetDialog extends AbstractDialog {
             validate();
         };
 
-
         //const templateSelector = new TemplateSelector("templateSelector", this.tags, this.templates, s => this.selectedTemplate = s, () => this.selectedTemplate, validate);
         let selectedCategory = "";
+        let selectedLanguage = "";
         let selection: Array<Template>
+
         const HasTag = (t: Template, tag: string) => {
-            return t.Tags.filter(n => n.trim().toLowerCase() === tag.trim().toLowerCase()).length > 0;
+            return t.classifications.filter(n => n === tag).length > 0;
         };
+
+        const getShortName = (s: string) => {
+            let shortName = s;
+            if (Object.getPrototypeOf(s) === "[]") {
+                shortName = s[0];
+            }
+            return shortName;
+        }
 
         const categories = new RefreshToken(() =>
             new Elm("div").Class("Categories").EatArray(this.tags, n =>
@@ -162,28 +173,37 @@ export class DotNetDialog extends AbstractDialog {
                     })
             ));
 
-
-
-
-
         const temlpateSelector = new RefreshToken(() =>
-
-            new Elm("div").Class("Templates").EatArray(
-                selectedCategory ? selection : this.templates, n =>
-                new Elm("div").Class(
-                    ...(n.Name == this.selectedTemplate ? ["group", "selected"] : ["group"])
-                ).Evt("click", e => {
-                    this.selectedTemplate = n.Name;
-                    temlpateSelector.Refresh();
-                    this.click();
-                }).Swallow(() => [
-                    new Elm("span").Text(n.Name),
-                    new Elm("span").Text(n.FullName),
-                    new Elm("span").EatArray(n.Languages, n => new Elm("span").Class("lang").Text(n))
-                ]))
+            new Elm("div")
+                .Class("Templates")
+                .EatAndGroup(
+                    selectedCategory ? selection : this.templates,
+                    n => n.tags?.language,
+                    n => n.name + n.description,
+                    (variablePart, constantPart) =>
+                        new Elm("article").Class(
+                            ...(getShortName(constantPart.shortName) == this.selectedTemplate ? ["group", "selected"] : ["group"])
+                        )
+                            .Attr("data-shortName", getShortName(constantPart.shortName))
+                            .Swallow(() => [
+                                new Elm("header").Class("templateName").Swallow(() => [
+                                    new Elm("h4").Text(constantPart.name)
+                                ]),
+                                new Elm("p").Class("templateDescription").Text(constantPart.description),
+                                new Elm("ul").EatArray(variablePart, n =>
+                                    new Elm("li").Evt("click", e => {
+                                        this.selectedTemplate = getShortName(constantPart.shortName);
+                                        this.selectedLanguage = n;
+                                        temlpateSelector.Refresh();
+                                    }).Swallow(() => [
+                                        new Elm("span").ClassIf("selected", this.selectedLanguage === n).Text(n)
+                                    ])
+                                )
+                            ]
+                            )
+                )
 
         );
-
 
 
 
@@ -222,28 +242,30 @@ export class DotNetDialog extends AbstractDialog {
 
 
         Elm.From(this.innerDialog).Swallow(() => [
-            new Elm("header").Text("DotNetCore Templates"),
-            new Elm("div").Class("OuterTemplateWrapper").Swallow(() => [
-                Elm.Refreshable(categories),
-                Elm.Refreshable(temlpateSelector),
-            ]),
-            new Elm("fieldset").Swallow(() => [
+            new Elm("div").Class("dialogWrapper").Swallow(() => [
+                new Elm("header").Text("DotNetCore Templates"),
+                new Elm("div").Class("OuterTemplateWrapper").Swallow(() => [
+                    Elm.Refreshable(categories),
+                    Elm.Refreshable(temlpateSelector),
+                ]),
+                new Elm("fieldset").Swallow(() => [
 
-                new Elm("div").Class("ControlGroup").Swallow(() => [
-                    new Elm("span").Text("Project Name: "),
-                    new Elm("input")
-                        .Id("projectName")
-                        .Value(this.projectName)
-                        .Evt("keydown", sanitize).Evt("keyup", changeProjName),
+                    new Elm("div").Class("ControlGroup").Swallow(() => [
+                        new Elm("span").Text("Project Name: "),
+                        new Elm("input")
+                            .Id("projectName")
+                            .Value(this.projectName)
+                            .Evt("keydown", sanitize).Evt("keyup", changeProjName),
+                    ])
+                ]),
+                new Elm("div").Class("ButtonGroup").Swallow(() => [
+                    new Elm("button").Text("Abort").Class("AbortButton", "dialogButton")
+                        .Evt("click", abort), ,
+                    new Elm("button").Text("Complete").Class("CompleteButton", "dialogButton", "disabled")
+                        .Evt("click", complete).Id("complete"),
+                    new Elm("button").Html("Next").Class("NextButton", "dialogButton", "disabled")
+                        .Evt("click", next).Id("next"),
                 ])
-            ]),
-            new Elm("div").Class("ButtonGroup").Swallow(() => [
-                new Elm("button").Text("Abort").Class("AbortButton", "dialogButton")
-                    .Evt("click", abort), ,
-                new Elm("button").Text("Complete").Class("CompleteButton", "dialogButton", "disabled")
-                    .Evt("click", complete).Id("complete"),
-                new Elm("button").Html("Next").Class("NextButton", "dialogButton", "disabled")
-                    .Evt("click", next).Id("next"),
             ])
         ])
 

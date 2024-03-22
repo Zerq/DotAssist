@@ -135,6 +135,29 @@ export class Elm {
         return this;
     }
 
+    public EatAndGroup<T>(ary: Array<T>, variable: (n: T) => string, groupBy: (n: T) => string, transform: (variablePart: Array<string>, constantPart: T) => Elm) {
+        const groups = new Map<string, Array<T>>();
+        ary.forEach(n => {
+            const item = groupBy(n);
+            if (!groups.has(item)) {
+                groups.set(item, [n]);
+            } else {
+                groups.get(item).push(n);
+            }
+        });
+
+        const result = Array<Elm>();
+        groups.forEach((value, key) => {
+            const variablePart = value.map(n => variable(n));
+            result.push(transform(variablePart, value[0]));
+        });
+
+
+        this.Swallow(() => result);
+
+        return this;
+    }
+
 
 }
 

@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
-namespace ConsoleApp1.hubs {
+namespace AppBase.Hubs;
     public class LowerCaseNamingPolicy : JsonNamingPolicy {
         public override string ConvertName(string name) {
             if (string.IsNullOrEmpty(name) || !char.IsUpper(name[0]))
@@ -30,4 +30,4 @@ namespace ConsoleApp1.hubs {
             writer.WriteNumberValue(value);
         }
     }
-}
+

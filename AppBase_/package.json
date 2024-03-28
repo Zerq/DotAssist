@@ -1,0 +1,14 @@
+{
+   "devDependencies": {
+      "@types/node": "20.11.30",
+      "tslint-clean-code": "0.2.10",
+      "typescript": "^5.4.3",
+      "typescript-cli": "0.1.0",
+      "gulp": "4.0.2",
+      "gulp-cli":"3.0.0"
+   },
+   "scripts": {
+      "build": "tsc --build && gulp"
+ 
+   }
+}

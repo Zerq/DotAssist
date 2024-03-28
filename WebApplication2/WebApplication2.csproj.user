@@ -6,22 +6,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
-  <ItemGroup>
-    <TypeScriptCompile Update="src\home\Components\DotNetDialog\DotNetDialog.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Update="src\home\Services\DotNetService.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Update="custom.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Update="src\assets\Icons.ts-derp">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-  </ItemGroup>
+  <ItemGroup />
 </Project>

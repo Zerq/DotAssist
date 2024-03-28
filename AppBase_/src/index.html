@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet" />
+
+    <style id="styles">
+menu li, menu ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+menu ul {
+    background-color: aquamarine;
+    display: block;
+    width: max-content;
+    padding: 5px;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+
+}
+ 
+menu > span {
+    background-color: silver;
+    padding: 5px;
+    border-right: solid 3px black;
+    border-left: solid 3px white;
+    user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+}
+
+
+
+ 
+
+menu .collapsed {
+        visibility:collapse;
+
+    }
+
+
+
+body{
+margin:0;
+padding: 0;
+border: 0;
+ 
+}
+
+
+omni-panel[dock=left]{
+    height: 100%;
+       position: relative;
+       left:0;
+
+}
+
+omni-panel[dock=right]{
+    height: 100%;
+       position: relative;
+       right:0;
+
+}
+
+omni-panel[dock=top]{
+    width: 100%;
+       position: relative;
+       top:0;
+
+}
+
+omni-panel[dock=bottom]{
+    width: 100%;
+       position: relative;
+       bottom:0;
+}
+
+omni-panel {
+    background-color: rgb(210, 220, 236);
+    display:inline-block;
+    border: solid 1px black;
+    padding: 0;
+    margin: 0;
+}
+
+:host(div) {
+border: solid 1px black;
+}
+
+:host(div) header {
+    border: solid 1px black;   
+}
+
+
+.test123 {
+ display: block;
+ width: 400px;
+ height: 200px;
+
+}
+
+
+    </style>
+<script type="module">
+    import "./entry.js";
+</script>
+</head>
+<body id="appMain"></body>
+</html>

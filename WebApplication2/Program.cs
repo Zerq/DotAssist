@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using System.Text.Json;
-using WarProfiteeringInc.hubs;
+using ConsoleApp1.hubs;
 using WebApplication4.Hubs;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

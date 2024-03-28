@@ -1,0 +1,20 @@
+panelHeader {
+background-color:chartreuse;
+}
+panelHeaderInner{
+    padding:7px; display: inline-block; 
+}
+
+div.blag {
+background-color:chocolate;
+width: 300px;
+height: 300px;
+}
+
+div.blag2 {
+    background-color:cornsilk;
+    width: 200px;
+    height: 300px;
+    }
+
+

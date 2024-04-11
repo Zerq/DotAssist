@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "nvm select",
+			"type": "shell",
+			"command": "nvm use 20.11.1"
+		},
+		
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "npm run build"
+		},
+		{
+			"type": "dotnet",
+			"task": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "dotnet: build"
+		}
+	]
+}

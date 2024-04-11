@@ -1,0 +1,149 @@
+nav.MenuStrip * {
+margin: 0;
+padding:0;
+border: 0;
+list-style: none;
+}
+nav.MenuStrip {
+border: solid 1px black;
+height: 32px;
+background-color: aqua;
+}
+ 
+nav.MenuStrip li span {
+    border-right:solid 1px yellow;
+    width: fit-content;
+    font-weight: bold;
+    background-color: blue; 
+    margin:5px;  
+} 
+
+ omni-menustrip > nav ul{
+display: flex !important;    
+}
+
+omni-menustrip > nav li{
+    flex: auto;    
+}
+
+omni-menustrip > nav > ul > li > ul > li  {
+    background-color: yellow;
+   }
+
+   omni-menustrip > nav > ul > li > ul > li > ul > li  {
+    background-color: yellowgreen;
+   }
+
+
+ omni-menustrip > nav > ul > li > ul > li > ul {
+ background-color: blueviolet;
+}
+
+
+nav.MenuStrip li > ul {
+ display: none !important;
+ }
+
+
+
+nav.MenuStrip li:hover > ul {
+    display: flex !important;    
+ }
+    
+
+/*
+.MenuStrip .Dropdown,
+.MenuStrip .Dropdown > li,
+.MenuStrip .Dropdown > li  ul {
+    margin: 0;
+    padding: 0;
+} 
+
+.MenuStrip .Dropdown ul{
+border: dotted 1px black;    
+display: inline-block;
+}
+
+.MenuStrip .Dropdown ul,
+.MenuStrip .Dropdown li {
+list-style: none;
+vertical-align: top;
+}
+.MenuStrip .Dropdown span:hover {
+background-color: cornflowerblue;;    
+}
+
+.MenuStrip .Dropdown  span:first-child{
+clear: both;
+}
+
+ li .subMenu + ul {
+display: none !important;
+    
+}
+
+li:hover .subMenu + ul {
+display: inline-block !important;
+}
+
+*/
+
+/*
+.MenuStrip .Dropdown li,
+.MenuStrip .Dropdown ul
+{
+padding: 0;
+margin: 0;
+list-style: none;
+} 
+.MenuStrip .Dropdown{
+    display: inline-block;
+ }
+.MenuStrip .Dropdown li ul {
+    border: solid 1px black;    
+    display: block;
+} 
+
+
+.MenuStrip .Dropdown > li>ul > li {
+    border: solid 1px black;   
+}
+ 
+
+
+.MenuStrip .Dropdown > li > ul > li > ul {
+ border-left: 0;
+ border-right: 0; 
+}
+.subMenu::after {
+color: rgba(0,0,0,0.3);
+content: "\25BC";    
+}
+
+  li:hover .subMenu::after  {
+    color: rgba(0,0,0,0.6);
+    content: "\25BC";    
+    }
+
+
+.MenuStrip .Dropdown > li > ul,
+.MenuStrip .Dropdown > li > ul > li > ul{ 
+
+  display: none;
+}
+
+.MenuStrip .Dropdown:hover > li > ul {
+
+    display: block;
+}
+.MenuStrip .Dropdown > li > ul > li:hover  > ul {
+
+    display: block;
+}
+
+
+.MenuStrip .Dropdown span {  
+    padding: 5px;
+} 
+
+*/

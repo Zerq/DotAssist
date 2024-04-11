@@ -2,9 +2,67 @@ import { prototype } from "events";
 import { Ctr, CustomElm, Elm } from "../../Elm.js";
 import { Search, Select } from "./Search.js";
 
-export interface DropDownItemLike {
-    getValue(): unknown;
-    getText(): string;
+export class DropDownItem {
+    public constructor(name:string, action: ()=> void, parent?: DropDownItem | StripMenuDropDown, ...children: Array<DropDownItem>){
+        this.Name = name;
+        this.Action = action;
+        this.Children = children;
+        this.Parent = parent;
+    }
+
+    private name = "";
+    private action: ()=> void;
+    private children: Array<DropDownItem> = [];
+    private parent: StripMenuDropDown | DropDownItem;
+
+    private update() {
+        if (!this.parent){
+            return;
+        }
+
+            if ( Object.getPrototypeOf(this.parent).constructor.name === DropDownItem.name){
+                (<DropDownItem>this.parent).update();
+            }else {
+                (<StripMenuDropDown>this.parent).Render();
+            }   
+    }
+
+    public set Parent(value: StripMenuDropDown|DropDownItem){
+        this.parent = value;
+        this.update();
+    }
+
+    public set Name(value: string){
+        this.name = value;
+        this.update();
+    }
+
+    public set Action(value: ()=> void){
+        this.action = value;
+        this.update();
+    }
+
+    public set Children(value: Array<DropDownItem>){
+        this.children = value;
+        this.update();
+    }
+
+    public get Parent(){
+       return this.parent;
+    }
+
+    public get Name() {
+       return this.name;
+    }
+
+    public get Action() {
+       return this.action;
+    }
+
+
+    public get Children(){
+      return  this.children;
+    }
 }
 
 export class SelectEvent extends Event {
@@ -39,7 +97,7 @@ export class MenuStrip extends HTMLElement {
          const menudropdowns = Select(this.children, n=> n instanceof StripMenuItem);
 
         Elm.From(this).Swallow(() => [
-            new Elm("nav").EatArray(menudropdowns, (e: StripMenuDropDown) => 
+            new Elm("nav").Class("MenuStrip").EatArray(menudropdowns, (e: StripMenuDropDown) => 
                 e.Render()   
             )
         ]);
@@ -62,24 +120,31 @@ export class MenuStrip extends HTMLElement {
 export class StripMenuDropDown extends StripMenuItem {
     static observedAttributes = [];
 
-    private items: Array<DropDownItemLike> = [];
+    private root: DropDownItem;
 
-    public set Items(value: Array<DropDownItemLike>) {
-        this.items = value;
+    public set Root(value: DropDownItem) {
+        this.root = value;
     }
 
-    public get Items(): Array<DropDownItemLike> {
-        return this.items;
+    public get Root(): DropDownItem{
+        return this.root;
     }
 
-    public Render(): Elm {
-        return new Elm("ul").EatArray(this.Items, n =>
-            new Elm("li").Text(n.getText()).Evt("click", e => {
-                this.dispatchEvent(new SelectEvent(n.getValue()));
-            })
+    private renderDropDownItem(root: DropDownItem): Elm{
+        return  new Elm("li").Evt("click", root.Action).Swallow(()=> 
+           root.Children.length > 0 ?  [
+            new Elm("span").Text(root.Name).Class("subMenu"),
+            new Elm("ul").EatArray(root.Children, n=> this.renderDropDownItem(n))] :
+            [ new Elm("span").Text(root.Name) ]        
         );
     }
 
+    public Render(): Elm {  
+        if (!this.Root){ return; }
+        return new Elm("ul").Class("Dropdown").Swallow(()=> [
+            this.renderDropDownItem(this.root)          
+        ]);
+    }
 
     public connectedCallback() {
     }

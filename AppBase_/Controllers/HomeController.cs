@@ -2,13 +2,22 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text.Json.Serialization;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.Security.Permissions;
+using AppBase_.Controllers;
+using CsTools.Extensions;
+using CsTools.Functional;
+namespace AppBase.Controllers
+{
 
-namespace AppBase.Controllers {
     public class HomeController : Controller {
 
         public ActionResult Index() {
             return new RedirectResult("/home.html");
         }
+ 
+
     }
 
     [Route("directory")]
